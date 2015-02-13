@@ -1,8 +1,10 @@
 body {
+/*
     font-family: "Helvetica Neue", sans-serif, Helvetica, Arial;
     margin: auto;
     position: relative;
     widows: 1200;
+*/
     
     background: url(texture-noise.png);
     overflow: hidden;
