@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)http://bl.ocks.org/jasondavies/4188334 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8">
+<title>World Map</title>
+<link rel="icon" href="http://bl.ocks.org/favicon.png">
+<style>
+
+@import url("/style.css?20120730");
+
+header,
+footer {
+  color: #555;
+}
+
+a.gist {
+  color: #000;
+}
+
+</style>
+
+<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head><body><header>
+  <a href="http://bl.ocks.org/jasondavies">jasondavies</a>’s block
+  <a class="gist" title="View gist #4188334 on GitHub" href="https://gist.github.com/jasondavies/4188334">#4188334</a>
+  <span class="date">December 2, 2012</span>
+</header>
+
+<h1>World Map</h1>
+
+
+<iframe src="./World Map_files/saved_resource.html" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<p></p><aside><a style="position:relative;top:6px;" href="http://bl.ocks.org/jasondavies/raw/4188334/" target="_blank">Open in a new window.</a></aside>
+
+
+<div class="gist-readme"><p>Based on Mike Bostock’s <a href="http://bl.ocks.org/4180634">World Map</a>, modified to automatically colour
+countries such that no adjacent countries share the same colour.</p>
+
+<p>This is done by extracting the topology via <a href="https://github.com/mbostock/topojson">TopoJSON</a> and greedily picking
+colours until the constraint is fulfilled.</p>
+
+<p>See also: <a href="http://en.wikipedia.org/wiki/Graph_coloring">Graph coloring</a> on Wikipedia.</p>
+
+<p><em>Update:</em> Greedily colouring is now performed in a single line, thanks to Mike
+Bostock!</p></div>
+
+<div class="gist-sources"><div class="gist-source"><h2>index.html<a name="index.html" href="http://bl.ocks.org/jasondavies/4188334#index.html">#</a></h2><pre><code class="html xml"><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span>
+<span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+
+<span class="class">.country</span> <span class="rules">{
+  <span class="rule"><span class="attribute">fill</span>:<span class="value"> <span class="hexcolor">#ccc</span></span>;</span>
+  <span class="rule"><span class="attribute">stroke</span>:<span class="value"> <span class="hexcolor">#fff</span></span>;</span>
+  <span class="rule"><span class="attribute">stroke-width</span>:<span class="value"> .<span class="number">5</span>px</span>;</span>
+  <span class="rule"><span class="attribute">stroke-linejoin</span>:<span class="value"> round</span>;</span>
+<span class="rule">}</span></span>
+
+<span class="class">.graticule</span> <span class="rules">{
+  <span class="rule"><span class="attribute">fill</span>:<span class="value"> none</span>;</span>
+  <span class="rule"><span class="attribute">stroke</span>:<span class="value"> <span class="number">#000</span></span>;</span>
+  <span class="rule"><span class="attribute">stroke-opacity</span>:<span class="value"> .<span class="number">3</span></span>;</span>
+  <span class="rule"><span class="attribute">stroke-width</span>:<span class="value"> .<span class="number">5</span>px</span>;</span>
+<span class="rule">}</span></span>
+
+<span class="class">.graticule</span><span class="class">.outline</span> <span class="rules">{
+  <span class="rule"><span class="attribute">stroke</span>:<span class="value"> <span class="number">#333</span></span>;</span>
+  <span class="rule"><span class="attribute">stroke-opacity</span>:<span class="value"> <span class="number">1</span></span>;</span>
+  <span class="rule"><span class="attribute">stroke-width</span>:<span class="value"> <span class="number">1.5</span>px</span>;</span>
+<span class="rule">}</span></span>
+
+</span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://d3js.org/d3.v3.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://d3js.org/d3.geo.projection.v0.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://d3js.org/topojson.v1.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+
+<span class="keyword">var</span> width = <span class="number">960</span>,
+    height = <span class="number">500</span>;
+
+<span class="keyword">var</span> projection = d3.geo.kavrayskiy7(),
+    color = d3.scale.category20(),
+    graticule = d3.geo.graticule();
+
+<span class="keyword">var</span> path = d3.geo.path()
+    .projection(projection);
+
+<span class="keyword">var</span> svg = d3.select(<span class="string">"body"</span>).append(<span class="string">"svg"</span>)
+    .attr(<span class="string">"width"</span>, width)
+    .attr(<span class="string">"height"</span>, height);
+
+svg.append(<span class="string">"path"</span>)
+    .datum(graticule)
+    .attr(<span class="string">"class"</span>, <span class="string">"graticule"</span>)
+    .attr(<span class="string">"d"</span>, path);
+
+svg.append(<span class="string">"path"</span>)
+    .datum(graticule.outline)
+    .attr(<span class="string">"class"</span>, <span class="string">"graticule outline"</span>)
+    .attr(<span class="string">"d"</span>, path);
+
+d3.json(<span class="string">"readme-world.json"</span>, <span class="function"><span class="keyword">function</span><span class="params">(error, world)</span> {</span>
+  <span class="keyword">var</span> countries = topojson.feature(world, world.objects.countries).features,
+      neighbors = topojson.neighbors(world.objects.countries.geometries);
+
+  svg.selectAll(<span class="string">".country"</span>)
+      .data(countries)
+    .enter().insert(<span class="string">"path"</span>, <span class="string">".graticule"</span>)
+      .attr(<span class="string">"class"</span>, <span class="string">"country"</span>)
+      .attr(<span class="string">"d"</span>, path)
+      .style(<span class="string">"fill"</span>, <span class="function"><span class="keyword">function</span><span class="params">(d, i)</span> {</span> <span class="keyword">return</span> color(d.color = d3.max(neighbors[i], <span class="function"><span class="keyword">function</span><span class="params">(n)</span> {</span> <span class="keyword">return</span> countries[n].color; }) + <span class="number">1</span> | <span class="number">0</span>); });
+});
+
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</code></pre></div></div>
+
+<script src="./World Map_files/d3.v3.min.js"></script>
+<script src="./World Map_files/highlight.min.js"></script>
+<script>
+
+var gist = {"history":[{"version":"c5b150aac00bbb67c08593304848c2f5fcaa04db"}],"files":{"README.md":{"language":"Markdown","type":"text/plain","filename":"README.md","size":521,"sha":"66b04eaaf3444d792ab194a68dce527d37f81a5b"},"index.html":{"language":"HTML","type":"text/html","filename":"index.html","size":1537,"sha":"535e04df9f2dc5328062bf6fffde756681bdd55f"},"readme-world.json":{"language":"JSON","type":"application/json","filename":"readme-world.json","size":600032,"sha":"c7c32ce9fde2ea84358788cfb6f42c900d56726e"}},"created_at":"2012-12-02T11:54:58.000Z","updated_at":"2014-11-18T16:39:57.000Z","description":"World Map","owner":{"login":"jasondavies"},"id":"4188334"};
+
+var files = d3.values(gist.files)
+    .sort(function(a, b) { return (b.filename === "index.html") - (a.filename === "index.html") || a.filename.localeCompare(b.filename); });
+
+var readme = d3.selectAll(".gist-readme")
+    .data(files.filter(function(d) { return /^readme\b/i.test(d.filename) && d.language === "Markdown"; }))
+    .each(function(d) {
+      var readme = d3.select(this);
+      d3.text("/jasondavies/raw/4188334/c5b150aac00bbb67c08593304848c2f5fcaa04db/" + d.filename, function(error, content) {
+        readme.html(new Showdown.converter().makeHtml(content));
+        readme.selectAll("code").each(function() { hljs.highlightBlock(this); });
+      });
+    });
+
+var source = d3.select(".gist-sources").selectAll(".gist-source")
+    .data(files.filter(function(d) { return !/^readme\b/i.test(d.filename) && d.size < 50000 && text(d.type); }))
+  .enter().append("div")
+    .attr("class", "gist-source");
+
+source.append("h2")
+    .text(function(d) { return d.filename; })
+  .append("a")
+    .attr("name", function(d) { return d.filename; })
+    .attr("href", function(d) { return "#" + d.filename; })
+    .text("#");
+
+source.append("pre").append("code")
+    .attr("class", function(d) { return d.language && (d.language === "JSON" ? "javascript" : d.language.toLowerCase()); })
+    .each(function(d) {
+      var code = d3.select(this);
+      d3.text("/jasondavies/raw/4188334/c5b150aac00bbb67c08593304848c2f5fcaa04db/" + (d.filename === "index.html" ? "" : d.filename), function(error, content) {
+        code.text(content);
+        hljs.highlightBlock(code.node());
+      });
+    });
+
+function text(type) {
+  return /(^text\/)|(^application\/(javascript|json)$)|(^image\/svg$)|(\+xml$)/.test(type);
+}
+
+</script>
+
+<footer>
+  <a href="http://bl.ocks.org/jasondavies">jasondavies</a>’s block
+  <a class="gist" title="View gist #4188334 on GitHub" href="https://gist.github.com/jasondavies/4188334">#4188334</a>
+  <span class="date">December 2, 2012</span>
+</footer>
+
+<script>
+
+GoogleAnalyticsObject = "ga", ga = function() { ga.q.push(arguments); }, ga.q = [], ga.l = +new Date;
+ga("create", "UA-48272912-1", "ocks.org");
+ga("send", "pageview");
+
+</script>
+<script async="" src="./World Map_files/analytics.js"></script>
+</body></html>

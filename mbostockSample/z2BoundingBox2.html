@@ -60,7 +60,7 @@ svg.append("rect")
 var g = svg.append("g")
     .style("stroke-width", "1.5px");
 
-d3.json("/d/4090846/us.json", function(error, us) {
+d3.json("us.json", function(error, us) {
   g.selectAll("path")
       .data(topojson.feature(us, us.objects.states).features)
     .enter().append("path")

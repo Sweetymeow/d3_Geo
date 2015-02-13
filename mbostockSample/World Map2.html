@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://bl.ocks.org/mbostock/4180634 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8">
+<title>World Map</title>
+<link rel="icon" href="http://bl.ocks.org/favicon.png">
+<style>
+
+@import url("/style.css?20120730");
+
+header,
+footer {
+  color: #555;
+}
+
+a.gist {
+  color: #000;
+}
+
+</style>
+
+<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head><body><header>
+  <a href="http://bl.ocks.org/mbostock">mbostock</a>’s block
+  <a class="gist" title="View gist #4180634 on GitHub" href="https://gist.github.com/mbostock/4180634">#4180634</a>
+  <span class="date">December 1, 2012</span>
+</header>
+
+<h1>World Map</h1>
+
+
+<iframe src="./World Map2_files/saved_resource.html" marginwidth="0" marginheight="0" scrolling="no" style="height: 580px;"></iframe>
+<p></p><aside><a style="position:relative;top:6px;" href="http://bl.ocks.org/mbostock/raw/4180634/" target="_blank">Open in a new window.</a></aside>
+
+
+<div class="gist-readme"><p>This map shows the Natural Earth <a href="http://www.naturalearthdata.com/downloads/50m-cultural-vectors/">Admin 0 - Countries</a> shapefile at 50m resolution. Converted to <a href="https://github.com/mbostock/topojson">TopoJSON</a>, only 140K gzipped. Each country is identified by its <a href="http://en.wikipedia.org/wiki/ISO_3166-1_numeric">ISO 3166-1 numeric code</a>.</p></div>
+
+<div class="gist-sources"><div class="gist-source"><h2>index.html<a name="index.html" href="http://bl.ocks.org/mbostock/4180634#index.html">#</a></h2><pre><code class="html xml"><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span>
+<span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+
+<span class="tag">body</span> <span class="rules">{
+  <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#fcfcfa</span></span>;</span>
+<span class="rule">}</span></span>
+
+<span class="class">.stroke</span> <span class="rules">{
+  <span class="rule"><span class="attribute">fill</span>:<span class="value"> none</span>;</span>
+  <span class="rule"><span class="attribute">stroke</span>:<span class="value"> <span class="number">#000</span></span>;</span>
+  <span class="rule"><span class="attribute">stroke-width</span>:<span class="value"> <span class="number">3</span>px</span>;</span>
+<span class="rule">}</span></span>
+
+<span class="class">.fill</span> <span class="rules">{
+  <span class="rule"><span class="attribute">fill</span>:<span class="value"> <span class="hexcolor">#fff</span></span>;</span>
+<span class="rule">}</span></span>
+
+<span class="class">.graticule</span> <span class="rules">{
+  <span class="rule"><span class="attribute">fill</span>:<span class="value"> none</span>;</span>
+  <span class="rule"><span class="attribute">stroke</span>:<span class="value"> <span class="number">#777</span></span>;</span>
+  <span class="rule"><span class="attribute">stroke-width</span>:<span class="value"> .<span class="number">5</span>px</span>;</span>
+  <span class="rule"><span class="attribute">stroke-opacity</span>:<span class="value"> .<span class="number">5</span></span>;</span>
+<span class="rule">}</span></span>
+
+<span class="class">.land</span> <span class="rules">{
+  <span class="rule"><span class="attribute">fill</span>:<span class="value"> <span class="number">#222</span></span>;</span>
+<span class="rule">}</span></span>
+
+<span class="class">.boundary</span> <span class="rules">{
+  <span class="rule"><span class="attribute">fill</span>:<span class="value"> none</span>;</span>
+  <span class="rule"><span class="attribute">stroke</span>:<span class="value"> <span class="hexcolor">#fff</span></span>;</span>
+  <span class="rule"><span class="attribute">stroke-width</span>:<span class="value"> .<span class="number">5</span>px</span>;</span>
+<span class="rule">}</span></span>
+
+</span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://d3js.org/d3.v3.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://d3js.org/d3.geo.projection.v0.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://d3js.org/topojson.v1.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+
+<span class="keyword">var</span> width = <span class="number">960</span>,
+    height = <span class="number">580</span>;
+
+<span class="keyword">var</span> color = d3.scale.category10();
+
+<span class="keyword">var</span> projection = d3.geo.kavrayskiy7()
+    .scale(<span class="number">170</span>)
+    .translate([width / <span class="number">2</span>, height / <span class="number">2</span>])
+    .precision(.<span class="number">1</span>);
+
+<span class="keyword">var</span> path = d3.geo.path()
+    .projection(projection);
+
+<span class="keyword">var</span> graticule = d3.geo.graticule();
+
+<span class="keyword">var</span> svg = d3.select(<span class="string">"body"</span>).append(<span class="string">"svg"</span>)
+    .attr(<span class="string">"width"</span>, width)
+    .attr(<span class="string">"height"</span>, height);
+
+svg.append(<span class="string">"defs"</span>).append(<span class="string">"path"</span>)
+    .datum({type: <span class="string">"Sphere"</span>})
+    .attr(<span class="string">"id"</span>, <span class="string">"sphere"</span>)
+    .attr(<span class="string">"d"</span>, path);
+
+svg.append(<span class="string">"use"</span>)
+    .attr(<span class="string">"class"</span>, <span class="string">"stroke"</span>)
+    .attr(<span class="string">"xlink:href"</span>, <span class="string">"#sphere"</span>);
+
+svg.append(<span class="string">"use"</span>)
+    .attr(<span class="string">"class"</span>, <span class="string">"fill"</span>)
+    .attr(<span class="string">"xlink:href"</span>, <span class="string">"#sphere"</span>);
+
+svg.append(<span class="string">"path"</span>)
+    .datum(graticule)
+    .attr(<span class="string">"class"</span>, <span class="string">"graticule"</span>)
+    .attr(<span class="string">"d"</span>, path);
+
+d3.json(<span class="string">"/mbostock/raw/4090846/world-50m.json"</span>, <span class="function"><span class="keyword">function</span><span class="params">(error, world)</span> {</span>
+  <span class="keyword">var</span> countries = topojson.feature(world, world.objects.countries).features,
+      neighbors = topojson.neighbors(world.objects.countries.geometries);
+
+  svg.selectAll(<span class="string">".country"</span>)
+      .data(countries)
+    .enter().insert(<span class="string">"path"</span>, <span class="string">".graticule"</span>)
+      .attr(<span class="string">"class"</span>, <span class="string">"country"</span>)
+      .attr(<span class="string">"d"</span>, path)
+      .style(<span class="string">"fill"</span>, <span class="function"><span class="keyword">function</span><span class="params">(d, i)</span> {</span> <span class="keyword">return</span> color(d.color = d3.max(neighbors[i], <span class="function"><span class="keyword">function</span><span class="params">(n)</span> {</span> <span class="keyword">return</span> countries[n].color; }) + <span class="number">1</span> | <span class="number">0</span>); });
+
+  svg.insert(<span class="string">"path"</span>, <span class="string">".graticule"</span>)
+      .datum(topojson.mesh(world, world.objects.countries, <span class="function"><span class="keyword">function</span><span class="params">(a, b)</span> {</span> <span class="keyword">return</span> a !== b; }))
+      .attr(<span class="string">"class"</span>, <span class="string">"boundary"</span>)
+      .attr(<span class="string">"d"</span>, path);
+});
+
+d3.select(self.frameElement).style(<span class="string">"height"</span>, height + <span class="string">"px"</span>);
+
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</code></pre></div></div>
+
+<script src="./World Map2_files/d3.v3.min.js"></script>
+<script src="./World Map2_files/highlight.min.js"></script>
+<script>
+
+var gist = {"history":[{"version":"be260be343d08fd56faff676f66746b8531f3c0e"}],"files":{"README.md":{"language":"Markdown","type":"text/plain","filename":"README.md","size":340,"sha":"b39ec1c47cf104a5dd9508e876f3f99e91d579c4"},"index.html":{"language":"HTML","type":"text/html","filename":"index.html","size":2088,"sha":"68d0c79869c3f11bb430af434dc1a2e8e50a8868"},"thumbnail.png":{"language":null,"type":"image/png","filename":"thumbnail.png","size":30246,"sha":"afe6568043ee9970cc4561f62e3d975cdd634547"}},"created_at":"2012-12-01T05:12:55.000Z","updated_at":"2014-09-30T10:38:52.000Z","description":"World Map","owner":{"login":"mbostock"},"id":"4180634"};
+
+var files = d3.values(gist.files)
+    .sort(function(a, b) { return (b.filename === "index.html") - (a.filename === "index.html") || a.filename.localeCompare(b.filename); });
+
+var readme = d3.selectAll(".gist-readme")
+    .data(files.filter(function(d) { return /^readme\b/i.test(d.filename) && d.language === "Markdown"; }))
+    .each(function(d) {
+      var readme = d3.select(this);
+      d3.text("/mbostock/raw/4180634/be260be343d08fd56faff676f66746b8531f3c0e/" + d.filename, function(error, content) {
+        readme.html(new Showdown.converter().makeHtml(content));
+        readme.selectAll("code").each(function() { hljs.highlightBlock(this); });
+      });
+    });
+
+var source = d3.select(".gist-sources").selectAll(".gist-source")
+    .data(files.filter(function(d) { return !/^readme\b/i.test(d.filename) && d.size < 50000 && text(d.type); }))
+  .enter().append("div")
+    .attr("class", "gist-source");
+
+source.append("h2")
+    .text(function(d) { return d.filename; })
+  .append("a")
+    .attr("name", function(d) { return d.filename; })
+    .attr("href", function(d) { return "#" + d.filename; })
+    .text("#");
+
+source.append("pre").append("code")
+    .attr("class", function(d) { return d.language && (d.language === "JSON" ? "javascript" : d.language.toLowerCase()); })
+    .each(function(d) {
+      var code = d3.select(this);
+      d3.text("/mbostock/raw/4180634/be260be343d08fd56faff676f66746b8531f3c0e/" + (d.filename === "index.html" ? "" : d.filename), function(error, content) {
+        code.text(content);
+        hljs.highlightBlock(code.node());
+      });
+    });
+
+function text(type) {
+  return /(^text\/)|(^application\/(javascript|json)$)|(^image\/svg$)|(\+xml$)/.test(type);
+}
+
+</script>
+
+<footer>
+  <a href="http://bl.ocks.org/mbostock">mbostock</a>’s block
+  <a class="gist" title="View gist #4180634 on GitHub" href="https://gist.github.com/mbostock/4180634">#4180634</a>
+  <span class="date">December 1, 2012</span>
+</footer>
+
+<script>
+
+GoogleAnalyticsObject = "ga", ga = function() { ga.q.push(arguments); }, ga.q = [], ga.l = +new Date;
+ga("create", "UA-48272912-1", "ocks.org");
+ga("send", "pageview");
+
+</script>
+<script async="" src="./World Map2_files/analytics.js"></script>
+</body></html>
