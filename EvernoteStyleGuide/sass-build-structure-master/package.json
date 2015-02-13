@@ -1,0 +1,59 @@
+{
+  "name": "evernote-sass",
+  "version": "1.1.5",
+  "description": "Evernote Sass build structure",
+  "main": "bin/evernotesass",
+  "preferGlobal": true,
+  "bin": {
+    "evernotesass": "./bin/evernotesass",
+    "evernotesass-page": "./bin/evernotesass-page"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evernote/sass-build-structure.git"
+  },
+  "keywords": [
+    "sass",
+    "css",
+    "structure",
+    "template",
+    "smacss",
+    "evernote",
+    "web",
+    "front-end",
+    "scss"
+  ],
+  "author": "Ryan Burgess <rburgess@evernote.com> (http://everernote.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evernote/sass-build-structure/issues"
+  },
+  "homepage": "https://github.com/evernote/sass-build-structure",
+  "dependencies": {
+    "fs-extra": "^0.16.3",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-newer": "^1.1.0",
+    "grunt-sass": "^0.17.0",
+    "grunt-sassyclean": "^0.1.1",
+    "mkdirp": "^0.5.0",
+    "path": "^0.11.14"
+  },
+  "devDependencies": {
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-newer": "^1.1.0",
+    "grunt-sass": "^0.17.0",
+    "grunt-sassyclean": "^0.1.1"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "licenses": {
+    "type": "MIT"
+  }
+}
