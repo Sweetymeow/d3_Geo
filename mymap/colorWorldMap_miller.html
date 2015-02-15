@@ -62,12 +62,14 @@
             height = 500;
 
         var projection = d3.geo.miller()
-            .scale(150)
-            .translate([width/2, height/2])
+            .scale(153)
+            .translate([width/2, height/2+60])
             .precision(.1);
         
-        var color = d3.scale.category20(),
-            graticule = d3.geo.graticule();
+        // https://github.com/mbostock/d3/wiki/Ordinal-Scales#categorical-colors
+        // Constructs a new ordinal scale with a range of twenty categorical colors
+        var color = d3.scale.category20c(),
+            graticule = d3.geo.graticule(); // 经纬线 https://github.com/mbostock/d3/wiki/Geo-Paths#shape-generators
 
         var path = d3.geo.path()
             .projection(projection);
@@ -87,15 +89,19 @@
             .attr("d", path);
 
         d3.json("color-world.json", function(error, world) {
-          var countries = topojson.feature(world, world.objects.countries).features,
-              neighbors = topojson.neighbors(world.objects.countries.geometries);
+            var countries = topojson.feature(world, world.objects.countries).features,
+                neighbors = topojson.neighbors(world.objects.countries.geometries);
 
-          svg.selectAll(".country")
-              .data(countries)
-            .enter().insert("path", ".graticule")
-              .attr("class", "country")
-              .attr("d", path)
-              .style("fill", function(d, i) { return color(d.color = d3.max(neighbors[i], function(n) { return countries[n].color; }) + 1 | 0); });
+            svg.selectAll(".country") // country should inside of json
+                .data(countries)
+                .enter().insert("path", ".graticule")
+                .attr("class", "country")
+                .attr("d", path)
+                .style("fill", function(d, i) { 
+                    return color(d.color = d3.max(neighbors[i], function(n) { 
+                        return countries[n].color; 
+                    }) + 1 | 0); 
+                });
         });
 
         </script>
