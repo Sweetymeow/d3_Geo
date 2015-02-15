@@ -92,7 +92,7 @@
             var countries = topojson.feature(world, world.objects.countries).features,
                 neighbors = topojson.neighbors(world.objects.countries.geometries);
 
-            svg.selectAll(".country") // country should inside of json
+            svg.selectAll(".country") // "country" should be one kind of key name inside of json
                 .data(countries)
                 .enter().insert("path", ".graticule")
                 .attr("class", "country")
