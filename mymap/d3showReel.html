@@ -86,13 +86,15 @@
               // Nest stock values by symbol. http://bl.ocks.org/phoebebright/raw/3176159/ 
               // 提供多重嵌套的显示结构
               symbols = d3.nest()
-                  .key(function(d) { return d.symbol; })
-                  .entries(stocks = data);
+                  .key(function(d) { return d.symbol; })   // symbol is name of first col in stocks.csv
+                  .entries(stocks = data); // 读入数据到全局变量
 
-              // Parse dates and numbers. We assume values are sorted by date.
+              // Parse解析 dates and numbers. We assume values are sorted by date.
               // Also compute the maximum price per symbol, needed for the y-domain.
-              symbols.forEach(function(s) {
-                s.values.forEach(function(d) { d.date = parse(d.date); d.price = +d.price; });
+              symbols.forEach(function(s) { // stocks.csv = symbol + date + price
+                s.values.forEach(function(d) {  // d3.values - 返回关联数组的value组成的数组.
+                    d.date = parse(d.date); d.price = +d.price; 
+                });
                 s.maxPrice = d3.max(s.values, function(d) { return d.price; });
                 s.sumPrice = d3.sum(s.values, function(d) { return d.price; });
               });
