@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Wendy d3 Map: Zoom 2 Bounding Box</title>
         <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script src="http://d3js.org/topojson.v1.min.js"></script>
         <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" />
         <link href="/colorbrewer2/colorbrewerPink.css" type="text/css" rel="stylesheet" />
        <!--Pure grid Responsive Grids & Mobile-first-->
@@ -15,9 +16,85 @@
         <!--[if gt IE 8]><!-->
             <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
         <!--<![endif]-->
+        <style>
+            .backgroud{
+                fill: none;
+                pointer-events: all;
+            }
+            
+            .feature{
+                fill: #ccc;
+                cursor: pointer;
+            }
+            
+            .feature.active{
+                fill: orange;
+            }
+            
+            .mesh{
+                fill: #fff;
+                stroke: #fff;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+            }
+            
+        </style>
     </head>
     <body>
-    
+        <div class="map"></div>
+        <script>
+            var width = 960,
+                height = 600,
+                active = d3.select(null);
+            
+            var projector = d3.geo.albers()
+                .scale(100)
+                .translate([width/2, height/2]);
+            // # projection.translate([point]) - https://github.com/mbostock/d3/wiki/Geo-Projections#translate
+            
+            var path = d3.geo.path()
+                .projection(projection);
+            
+            var svg = d3.select("div.map").append("svg")
+                .attr("width", width)
+                .attr("height", height);
+            
+            svg.append("rect")
+                .attr("class", "background")
+                .attr("width", width)
+                .attr("height", height)
+                .on("click", reset);
+            
+            var g = svg.append("g")
+                .style("stroke-width", 1.5px);
+            
+            function clicked(d){
+                if(active.node() === this){ return reset() }
+                active.classed("active", false);
+            }
+            
+            function reset(){
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </script>
         
     </body>
 </html>
