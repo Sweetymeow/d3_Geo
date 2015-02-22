@@ -19,13 +19,13 @@
                 text-align: center;
             }
             
-           .background { fill: none;  pointer-events: all; }
-
+            .background { fill: #eee;  pointer-events: all; }
+   
             #states { fill: #aaa; }
 
             #state-borders {
               fill: none;
-              stroke: #fff;
+              stroke: pink;
               stroke-width: 1.5px;
               stroke-linejoin: round;
               stroke-linecap: round;
@@ -61,8 +61,8 @@
             var width = 960,
                 height = 500;
 
-            var projection = d3.geo.albersUsa()
-                .scale(1070)
+            var projection = d3.geo.patterson()
+                .scale(160)
                 .translate([width / 2, height / 2]);
 
             var path = d3.geo.path()
@@ -74,11 +74,53 @@
                 .scaleExtent([height, 8*height])
                 .on("zoom", zooomed);
             
+            var svg = d3.select("div.map").append("svg")
+                .attr("width", width)
+                .attr("height", height);
             
+            var g = svg.append("g")
+                .call(zoom);
             
+            g.append("rect")
+                .attr("class", "background")    
+                .attr("height", height)
+                .attr("width", width);
             
+            d3.json("world110m.json", function(error, d){
+                g.append("g").attr("id", "state")
+                    .selectAll("path")
+                    .data(topojson.feature(d, d.objects.countries).features)
+                    .enter().append("path")
+                    .attr("d", path)
+                    .on("click", clicked);
+                
+                g.append("path")
+                    .datum(topojson.mesh(d, d.objects.countries, function(a,b){ return a!==b; }))
+                    .attr("id", "state-borders")
+                    .attr("d", path);
+            })
             
+            function clicked(d){
+                var centroid = path.centroid(d),
+                    translate = projection.translate();
+                
+                projection.translate([
+                    translate[0] - centroid[0] + width / 2,
+                    translate[1] - centroid[1] + height / 2
+                ])
+                
+                zoom.translate(projection.translate());
+                
+                g.selectAll("path").transition()
+                    .duration(700)
+                    .attr("d", path);
+            }
             
+            function zooomed(){
+                projection.translate(d3.event.translate).scale(d3.event.scale);
+                g.selectAll("path")
+                    .attr("d", path);
+            }
             
         </script>
     </body>
