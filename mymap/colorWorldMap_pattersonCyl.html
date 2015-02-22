@@ -9,13 +9,16 @@
         <style>
             body{
                 background: #eee;
+                font-family: sans-serif;
             }
             
             div.header{
+                padding: 0 1em 0 1em;
                 position: relative;
                 left: 20px;
             }
             div.map{
+                padding: auto;
                 background:  #fff;
                 border: 1em black;
             }
@@ -45,13 +48,14 @@
 
     <body>
         <div class="header">
-            <h1>Miller projection</h1>
-            <p>The 
-                <a href="http://en.wikipedia.org/wiki/Miller_cylindrical_projection">
-                    Miller projection</a> 
-                is available as d3.geo.miller in the 
-                <a href="https://github.com/d3/d3-geo-projection/">geo.projection</a>
-                D3 plugin.
+            <h1> Patterson Cylindrical Projection</h1>
+            <p>The <a href="http://shadedrelief.com/patterson/">
+                Patterson cylindrical projection</a> 
+                “falls between the popular 
+                <a href="http://bl.ocks.org/mbostock/3734333">Miller 1</a>
+                , which excessively exaggerates the size of polar areas, and the 
+                <a href="http://bl.ocks.org/mbostock/3757119">Plate Carrée</a>
+                , which compressess the north-south dimension of mid latitudes.”
             </p>
         </div>
         <div class="map">
@@ -59,10 +63,10 @@
         <script>
 
         var width = 960,
-            height = 700;
+            height = 547;
 
-        var projection = d3.geo.miller()
-            .scale(150)
+        var projection = d3.geo.patterson()
+            .scale(152)
             .translate([width/2, height/2])
             .precision(.1);
         
