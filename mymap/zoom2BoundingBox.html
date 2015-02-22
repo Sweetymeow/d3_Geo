@@ -44,11 +44,21 @@
                 stroke-width: .5px;
                 stroke-opacity: .8;
             }
+            .l-box{
+                padding: 1em;
+            }
             
         </style>
     </head>
     <body>
-        <div class="map"></div>
+        <div class="pure-u-1 l-box">
+        <h1>Zoom to Bounding Box</h1>
+        <p>This example demonstrates how to compute a suitable translate and scale to zoom to the bounding box of a particular feature. Click on any state to zoom in; click on the focused state or the background to zoom out. This variant uses transform transitions to change the viewport. A slightly better approach, and one that can also allow free panning and zooming with the mouse if desired, is to use zoom transitions.</p>
+        <p>这个例子演示了如何计算合适的翻译和规模放大到一个特定的功能的边框。点击任何国家进行放大;点击聚焦状态或背景缩小。 该变种利用变换转换来改变视口。一个稍微好一点的办法，一个也可以允许自由平移和如果需要鼠标缩放，是使用缩放转换。
+        </p>
+        </div>
+        <div class="map pure-u-1">
+        </div>
         <script>
             var width = 960,
                 height = 700,
