@@ -1,0 +1,224 @@
+/* -------------------------------------------------- 
+   Custom styles
+-----------------------------------------------------*/
+
+/* -------------------------------------------------- 
+  Global resets
+-----------------------------------------------------*/
+body {
+	font-family: Lato, Arial, sans-serif;
+	font-weight: 500;
+	font-style: normal;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: Lato, Arial, sans-serif;
+	font-weight: 200;
+}
+p {
+	font-family: Cardo, Georgia, Times, serif;
+	font-weight: normal;
+}
+.button {
+	font-family: Lato, Arial, sans-serif;
+	font-weight: 700;
+}
+/* -------------------------------------------------- 
+   top navigation styles
+-----------------------------------------------------*/
+/*set font and color of menu text*/
+.menu {
+	color: white;
+	padding-left: 30px;
+}
+.top-bar ul li a:not(.button), .top-bar ul li a:not(.name) {
+	font-weight: normal;
+	font-size: 14px;
+}
+/* -------------------------------------------------- 
+  header styles
+-----------------------------------------------------*/
+header {
+	margin-bottom: 30px;
+}
+header h1 {
+	font-size: 48px;
+	font-weight:bold;
+	float: left;
+	line-height: 100px;
+	margin: 0;
+	padding-left: 70px;
+	background: url(../_images/sp-logo-100.png) no-repeat left center;
+	margin:0 15px 0 30px;
+}
+.primate {
+	
+}
+header h2 {
+	font-size: 18px;
+	font-style: italic;
+	font-weight: 700;
+	padding-top: 50px;
+	text-transform: lowercase;
+}
+/* -------------------------------------------------- 
+   main article styles
+-----------------------------------------------------*/
+.main h2 {
+	font-weight: 500;
+	font-size: 24px;
+}
+.main h3 {
+	font-size: 64px;
+	padding-bottom: 12px;
+	border-bottom: 2px solid #666;
+}
+.main p {
+	font-size: 20px;
+	line-height: 1.6;
+}
+.main .teaser {
+	margin-bottom: 0;
+}
+.main img.teaser {
+	margin-bottom: 16px;
+}
+.panel {
+	margin-bottom: 16px;
+}
+.panel p {
+	font-size: 1em;
+}
+.postcallout {
+	margin-top: 16px;
+}
+/* -------------------------------------------------- 
+   forms styles
+-----------------------------------------------------*/
+
+/* -------------------------------------------------- 
+   sidebar styles
+-----------------------------------------------------*/
+aside h3 {
+	font-size: 24px;
+	margin-top: 3em;
+	margin-bottom: 16px;
+}
+aside p {
+	font-family: Lato, Arial, sans-serif;
+	font-size: 15px;
+	line-height: 2;
+	font-style: normal;
+}
+ul.social {
+	list-style: none;
+	margin: 0 auto;
+	width: 60%;
+	overflow: hidden;
+}
+ul.social li a {
+	text-indent: -9000px;
+	width: 35px;
+	height: 35px;
+	background: black;
+}
+ul.social li a.twitter {
+	float: left;
+	background: url(../_images/social_twitter_35.png) no-repeat;
+}
+ul.social li a.rss {
+	float: right;
+	background: url(../_images/social_rss_35.png) no-repeat;
+}
+/* -------------------------------------------------- 
+   news styles
+-----------------------------------------------------*/
+div.news {
+	margin-top: 64px;
+}
+
+.news h2 {
+	font-size: 20px;
+	line-height: 45px;
+	padding-left: 20px;
+	margin-bottom: 0;
+}
+/* -------------------------------------------------- 
+   footer styles
+-----------------------------------------------------*/
+footer {
+	background: #4d4d4d;
+	height: 60px;
+}
+footer p {
+	font-size: 12px;
+	color: white;
+	line-height: 60px;
+}
+footer ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+footer ul li {
+	float: left;
+}
+footer ul li a {
+	color: white;
+	display: block;
+	margin-right: 16px;
+	padding: 0 16px;
+	line-height: 60px;
+}
+footer ul li a:hover {
+	color: white;
+	background: #333;
+}
+footer form label {
+	position: absolute;
+	left: -9000px;
+}
+footer form input[type="search"] {
+	width: 60%;
+	height: 26px;
+}
+footer form input[type="submit"] {
+	width: 20%;
+}
+footer form input[type="search"], footer form input[type="submit"] {
+	float: left;
+	margin: 15px 16px 0 0;
+}
+/* -------------------------------------------------- 
+   Smaller screen styles
+-----------------------------------------------------*/
+@media only screen and (max-width: 720px) {
+
+/* -------------------------------------------------- 
+   top navigation styles
+-----------------------------------------------------*/
+
+/* -------------------------------------------------- 
+  header styles
+-----------------------------------------------------*/
+
+/* -------------------------------------------------- 
+   main article styles
+-----------------------------------------------------*/
+
+/* -------------------------------------------------- 
+   forms styles
+-----------------------------------------------------*/
+
+/* -------------------------------------------------- 
+   sidebar styles
+-----------------------------------------------------*/
+
+/* -------------------------------------------------- 
+   news styles
+-----------------------------------------------------*/
+
+/* -------------------------------------------------- 
+   footer styles
+-----------------------------------------------------*/
+	
+}

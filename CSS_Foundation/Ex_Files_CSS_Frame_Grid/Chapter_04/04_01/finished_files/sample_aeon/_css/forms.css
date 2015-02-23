@@ -1,0 +1,213 @@
+/*
+	Responsive Aeon Grid v2.0
+	Designed & Built by Fernando Monteiro, http://www.newaeonweb.com.br	
+	Licensed under GPL license, http://www.gnu.org/licenses/gpl-3.0-standalone.html
+	
+	Base stylesheet for forms and buttons
+*/
+
+.btn {
+  -moz-box-shadow: inset 0px 1px 0px 0px white;
+  -webkit-box-shadow: inset 0px 1px 0px 0px white;
+  box-shadow: inset 0px 1px 0px 0px white;
+  background-color: #ededed;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  display: inline-block;
+  color: #777777;
+  font: bold 1em / 1.5em "Helvetica Neue", Arial, "Liberation Sans", FreeSans, sans-serif;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 1px 1px 0px white;
+  behavior: url(js/pie.htc);
+}
+.btn:hover {
+  background-color: #dfdfdf;
+}
+.btn:active {
+  position: relative;
+  top: 1px;
+}
+.confirm {
+  -moz-box-shadow: inset 0px 1px 0px 0px #c1ed9c;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #c1ed9c;
+  box-shadow: inset 0px 1px 0px 0px #c1ed9c;
+  background-color: #9dce2c;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  border: 1px solid #83c41a;
+  color: white;
+  font: bold 1em / 1.5em "Helvetica Neue", Arial, "Liberation Sans", FreeSans, sans-serif;
+  text-shadow: 1px 1px 0px #689324;
+}
+.confirm:hover {
+  background-color: #8cb82b;
+}
+.confirm:active {
+  position: relative;
+  top: 1px;
+}
+.error {
+  -moz-box-shadow: inset 0px 1px 0px 0px #f5978e;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #f5978e;
+  box-shadow: inset 0px 1px 0px 0px #f5978e;
+  background-color: #f24537;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  border: 1px solid #d02718;
+  color: white;
+  font: bold 1em / 1.5em "Helvetica Neue", Arial, "Liberation Sans", FreeSans, sans-serif;
+  text-shadow: 1px 1px 0px #810e05;
+}
+.error:hover {
+  background-color: #c62d1f;
+}
+.error:active {
+  position: relative;
+  top: 1px;
+}
+.send {
+  -moz-box-shadow: inset 0px 1px 0px 0px #97c4fe;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #97c4fe;
+  box-shadow: inset 0px 1px 0px 0px #97c4fe;
+  background-color: #3d94f6;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  border: 1px solid #337fed;
+  color: white;
+  font: bold 1em / 1.5em "Helvetica Neue", Arial, "Liberation Sans", FreeSans, sans-serif;
+  text-shadow: 1px 1px 0px #1570cd;
+}
+.send:hover {
+  background-color: #1e62d0;
+}
+.send:active {
+  position: relative;
+  top: 1px;
+}
+/*Size of all buttons*/
+
+.btn.small {
+  font-size: 0.835em;
+  padding: 3px 12px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+.btn.big {
+  font-size: 1.5em;
+  padding: 10px 20px;
+}
+/*Forms*/
+
+.forms {
+  width: 98%;
+}
+/*use width to limit the form width, coz the percentage controls*/
+
+/** You can use this style for your INPUT, TEXTAREA, SELECT elements **/
+
+.forms input[type="text"],
+input[type="url"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+textarea,
+select {
+  border: 1px solid #cccccc;
+  background: white;
+  font: normal 0.835em / 1.5em Arial, Helvetica, sans-serif;
+  padding: 5px 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  width: 98%;
+  display: block;
+  margin-bottom: 10px;
+  behavior: url(js/pie.htc);
+}
+.forms select {
+  width: 100%;
+}
+.forms input:focus,
+textarea:focus,
+select:focus {
+  color: #454743;
+  -moz-box-shadow: 0 0 5px 1px #cccccc;
+  -webkit-box-shadow: 0 0 5px 1px #cccccc;
+  box-shadow: 0 0 5px 1px #cccccc;
+}
+.forms input[type="submit"],
+button {
+  -moz-box-shadow: inset 0px 1px 2px 0px white;
+  -webkit-box-shadow: inset 0px 1px 2px 0px white;
+  box-shadow: inset 0px 1px 2px 0px white;
+  background-color: #ec731d;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #ec7e32;
+  display: inline-block;
+  color: white;
+  font: normal 100% / 1.5em "Helvetica Neue", Arial, "Liberation Sans", FreeSans, sans-serif;
+  padding: 1.5% 2.5%;
+  text-decoration: none;
+  cursor: pointer;
+  behavior: url(js/pie.htc);
+}
+.forms input[type="submit"]:hover,
+button:hover {
+  background-color: rgba(236, 115, 29, 0.9);
+}
+.forms input[type="submit"]:active,
+button:active {
+  position: relative;
+  top: 1px;
+}
+.btn,
+input[type="submit"],
+button {
+  cursor: pointer;
+}
+input::-webkit-input-placeholder {
+  color: #999999;
+}
+input:-moz-placeholder {
+  color: #999999;
+}
+::-webkit-input-placeholder {
+  color: #999999;
+}
+:-moz-placeholder {
+  color: #999999;
+}
+.forms placeholder {
+  font-size: 0.835em;
+}
+.forms label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 0.835em;
+  color: #797272;
+}
+.forms fieldset {
+  padding: 9px 9px 2px 9px;
+  border: solid 1px #dddddd;
+  margin: 18px 0;
+}
+.forms legend {
+  font-size: 0.835em;
+  color: #797272;
+  font-family: inherit;
+}
+.forms input[type=radio],
+input[type=checkbox] {
+  display: inline;
+  width: auto;
+  margin-bottom: 0;
+}
