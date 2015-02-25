@@ -64,7 +64,7 @@
     var g = svg.append("g")
         .style("stroke-width", "1.5px");
 
-    d3.json("us.json", function(error, us) {
+    d3.json("../MyMAP/jsons/us.json", function(error, us) {
 	    console.log(us);
 	    
 		g.selectAll("path")

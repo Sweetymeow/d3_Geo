@@ -94,7 +94,7 @@
                 .style("stroke-width", "1.5px");
                 // g : svg 组 
             
-            d3.json("world-50m.json", function(error, d){
+            d3.json("../MyMAP/jsons/world-50m.json", function(error, d){
                 console.log(d);
                 g.selectAll("path")
                     .data(topojson.feature(d, d.objects.countries).features)
