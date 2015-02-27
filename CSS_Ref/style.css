@@ -1,0 +1,167 @@
+/* Reset
+-------------------------------------------------------------- */
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,code,del,dfn,em,img,q,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;margin:0;padding:0;}
+table{border-collapse:separate;border-spacing:0;margin-bottom:1.4em;}
+caption,th,td{text-align:left;font-weight:400;}
+blockquote:before,blockquote:after,q:before,q:after{content:"";}
+blockquote,q{quotes:;}
+a img{border:none;}
+
+
+/* Page
+-------------------------------------------------------------- */
+.banner{width: 900px; margin:0px auto 70px;}
+.lined{ border-top: 2px dashed #e1d0a8;}
+.content{margin: 40px auto 80px;width:900px;}
+.clearfix{display:inline-block}
+.section {margin-left:auto;margin-right:auto;width:900px;padding-top: 50px;padding-bottom: 50px;border-bottom: 2px dashed #e1d0a8;}
+.explanation{float: left;margin-left: 0px;margin-right:100px;display: inline;width: 300px;}
+.example{width: 500px;float: left;margin-left: 0px;margin-right: 0px;display: inline;}
+.footer{font-size: 18px;}
+
+
+/* Typography
+-------------------------------------------------------------- */
+body { font-size: 80%;	line-height: 1.5;	color: #867b62;	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;background: #fdf2dc url(../img/bg.jpg) repeat;}
+.label{font-style: italic;}
+p { margin: 0 0 1.5em; }
+strong { font-weight: bold;}
+em{ font-style: italic; }
+pre,code,tt { font: 13px 'andale mono', 'lucida console', monospace;}
+pre,code    { margin: 1.5em 0; white-space: pre; }
+
+
+/* Headings
+-------------------------------------------------------------- */
+h1,h2,h3 { line-height: 1;text-transform: uppercase;font-weight: bold;}
+h1, h2{font-size: 3em;}
+h3{font-size: 5.5em;letter-spacing: -6px;}
+
+
+/* Links
+-------------------------------------------------------------- */
+a { color: #e83119; text-decoration: none;font-weight: bold;}
+a:focus, a:hover {text-decoration: none;color: #666;}
+
+
+
+/* Example #1a webkit transitions for color 
+-------------------------------------------------------------- */
+.color-transition a{color: #e83119;font-size: 35px;text-transform: uppercase;}
+.color-transition a:hover{color: #0a99ae;}
+.color-transition a{ -webkit-transition:color .4s ease-out;}
+
+
+/* Example #1b webkit transitions for border thickness  
+-------------------------------------------------------------- */
+.border-nav{min-height: 120px;margin-top: 60px;}
+
+.border-nav ul li{
+	display: inline;
+	list-style-type: none;}
+
+.border-nav a{
+	font-size: 22px;
+	display: inline-block;
+	margin: 0px 15px 0px 0px;
+	text-decoration: none;
+	float: left;
+	border-bottom: 3px solid #e83119;
+	-webkit-transition: border .3s ease-out;}
+
+.border-nav a:hover{
+	border-bottom: 50px solid #e83119;
+	text-decoration: none; 
+	color: #e83119;}
+
+
+
+/* Example #2a background-clip
+-------------------------------------------------------------- */
+.bg-clip{
+	background: url(../img/clipped_image.png) repeat;
+	margin-bottom: 60px;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	}
+
+
+
+/* Example #2b background-clip & text-rotate
+-------------------------------------------------------------- */
+.txt-rotate{
+	background: url(../img/clipped_image.png) repeat;
+	margin-bottom: 35px;margin-top: 0px;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-webkit-transform: rotate(-5deg); 
+	-moz-transform: rotate(-5deg);
+	-o-transform: rotate (-5deg);}
+
+
+
+/* Example 3a Box Shadow & RGBA color
+-------------------------------------------------------------- */
+
+
+.shadowed{
+	margin-top: 30px;
+	margin-bottom: 30px;
+	border: 3px solid #fff;
+	box-shadow: 0 3px 4px rgba(0,0,0,.5);
+	-o-box-shadow: 0 3px 4px rgba(0,0,0,.5);
+	-moz-box-shadow: 0 3px 4px rgba(0,0,0,.5);
+	-webkit-box-shadow: 0 3px 4px rgba(0,0,0,.5);}
+
+.smash1{  -o-transform: rotate(2.5deg);
+	-moz-transform: rotate(2.5deg);
+	-webkit-transform: rotate(2.5deg);
+	margin-bottom: -125px;}
+
+.smash2{  -o-transform: rotate(-7deg);
+	-moz-transform: rotate(-7deg);
+	-webkit-transform: rotate(-7deg);}
+
+.smash3{  -o-transform: rotate(2.5deg);
+	-moz-transform: rotate(2.5deg);
+	-webkit-transform: rotate(2.5deg)}
+
+.smash4{  -o-transform: rotate(-2.5deg);
+	-moz-transform: rotate(-2.5deg);
+	-webkit-transform: rotate(-2.5deg);
+	margin-top: -40px;}
+
+
+
+/* Example #4a Keyframe Animation 
+-------------------------------------------------------------- */
+.circle_motion{
+	-webkit-animation-name: track;
+	-webkit-animation-duration: 8s;
+	-webkit-animation-iteration-count: infinite;
+	}
+
+@-webkit-keyframes track {
+	0% {
+		margin-top:0px;
+	}
+	25% {
+		margin-top:150px;
+	}
+	50% {
+		margin-top:150px;
+		margin-left: 300px;
+	}
+	75% {
+		margin-top:0px;
+		margin-left: 300px;
+	}
+	100% {
+		margin-left:0px;
+	}
+}
+
+
+
+
+

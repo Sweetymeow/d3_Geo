@@ -38,6 +38,7 @@
             }
             .label {
                 fill: #E91E63;
+                font-size: 1em;
             }
            
         </style>
@@ -72,6 +73,9 @@
                 .attr("width", width)
                 .attr("height", height);
             
+            var tempFontSize, tempColor;
+            
+            
             queue()
                 .defer(d3.json, "../MyMAP/jsons/world-50m.json")
                 .defer(d3.json, "../MyMAP/jsons/myCountries.json")
@@ -85,26 +89,42 @@
                   .datum(topojson.feature(world, world.objects.countries))
                   .attr("d", path);
 
-                svg.selectAll(".symbol")
-                  .data(centroid.features.sort(function(a, b) { return b.properties.population - a.properties.population; }))
-                  .enter().append("path")
-                  .attr("class", "symbol")
-                  .attr("d", path.pointRadius(function(d) { return radius(d.properties.population); }));
+                var myPopCir = svg.selectAll(".symbol")
+                    .data(centroid.features.sort(function(a, b) { return b.properties.population - a.properties.population; }))
+                    .enter().append("path")
+                    .attr("class", "symbol")
+                    .attr("d", path.pointRadius(function(d) { return 0; }));
+                
+                myPopCir.transition()
+                    .attr("d", path.pointRadius(function(d) { return radius(d.properties.population); 
+                    }))
+                    .delay(function(d, i){
+                        return i*5;
+                    })
+                    .ease('elastic');
+
                 
                  svg.selectAll(".center")
-                  .data(centroid.features)
-                  .enter().append("path")
-                  .attr("class", "center")
-                  .attr("d", path.pointRadius(function(d) { return pointR; }));
+                    .data(centroid.features)
+                    .enter().append("path")
+                    .attr("class", "center")
+                    .attr("d", path.pointRadius(function(d) { return pointR; }));
                 
-                svg.selectAll(".label")
+                 svg.selectAll(".label")
                     .data(centroid.features)
                     .enter().append("text")
                     .attr("class", "label")
                     .attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; })
                     .attr("dx", "0.5em").attr("dy", "0.35em")
                     .text(function(d) { return d.properties.name; })
-                    .attr("fill", "white");
+                    .on('mouseover', function(d){
+                        tempFontSize = this.style.fontSize;
+                        tempColor = this.style.fill;
+                        d3.select(this).style('font-size', 2+'em').style('fill', 'white')
+                    })
+                    .on('mouseout', function(d){
+                        d3.select(this).style('font-size', tempFontSize).style('fill', tempColor)
+                    });
                 
              }
 
