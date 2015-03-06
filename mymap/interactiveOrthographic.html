@@ -38,6 +38,8 @@
           projection.rotate([λ(p[0]), φ(p[1])]);
           svg.selectAll("path").attr("d", path);
         });
+        /* # d3.mouse(container): Returns the x and y coordinates of the current d3.event, relative to the specified container. The container may be an HTML or SVG container element, such as an svg:g or svg:svg. The coordinates are returned as a two-element array [x, y].
+        */
 
         d3.json("/d/4090846/world-110m.json", function(error, world) {
           svg.append("path")
