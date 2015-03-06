@@ -51,7 +51,7 @@
             var link = svg.selectAll(".link"),
                 node = svg.selectAll(".node");
             
-            d3.json("CollForceLayout.json", function(json){
+            d3.json("../mymap/jsons/CollForceLayout.json", function(json){
                 root = json;
                 update();
             })
