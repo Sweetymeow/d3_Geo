@@ -116,11 +116,10 @@
                 .translate([width / 2, height / 2])
                 .clipAngle(90);
 
-
             var path = d3.geo.path()
-                .projection(proj).pointRadius(1.5);
+                .projection(proj).pointRadius(2);
 
-            var graticule = d3.geo.graticule();
+            var graticule = d3.geo.graticule(); // 经纬网
 
             var svg = d3.select("div.map").append("svg")
                         .attr("width", width)
