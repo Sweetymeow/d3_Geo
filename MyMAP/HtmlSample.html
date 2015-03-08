@@ -8,6 +8,7 @@
         <script src="http://d3js.org/d3.geo.projection.v0.min.js" charset="utf-8"></script>
         <script src="http://d3js.org/topojson.v1.min.js"></script>
         
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
         <!--[if lte IE 8]>
         <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-old-ie-min.css">
@@ -20,6 +21,31 @@
                 padding: 0.8em;
                 text-align: center;
             }
+            
+            body {
+                font-family: 'PT Sans', serif;
+            }
+            h1{
+                color: white;
+                font-size: 3em;
+                background: #E91E63;
+                padding: 0.5em 0 0.5em 0;
+                text-align: center;
+            }
+            p{
+                font-size: 1.3em;
+                text-align: left;
+                line-height: 1.2em;
+                display: block;
+                -webkit-margin-before: 0.5em;
+                -webkit-margin-after: 0.5em;
+                -webkit-margin-start: 2em;
+                -webkit-margin-end: 2em;
+            }
+            svg{
+                -webkit-margin-before: 2em;
+                border: 1px solid #DEDEDE;
+            }
            
         </style>
 	</head>
@@ -27,7 +53,7 @@
     <body>
         <div class="pure-g">
             <div class="pure-u-1 l-box">
-                <h1 class="">GDP per capita (current US$)</h1>
+                <h1>GDP per capita (current US$)</h1>
                 <p>GDP per capita is product </p>
                 <div class="map"></div>
             </div>
