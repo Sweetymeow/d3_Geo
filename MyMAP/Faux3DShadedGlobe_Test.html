@@ -27,15 +27,15 @@
             }
             
             .land {
-              fill: rgb(117, 87, 57);
+              fill: white;
               stroke-opacity: 1;
             }
 
             .countries path {
-              stroke: rgb(80, 64, 39);  
+              stroke: white;  
               stroke-linejoin: round;
               stroke-width:.5;
-              fill: rgb(117, 87, 57);
+              fill: white;
               opacity: .1;
             }
 
@@ -109,33 +109,35 @@
                 .await(ready);
 
             function ready(error, world, places) {
-              var ocean_fill = svg.append("defs").append("radialGradient")
+                var ocean_fill = svg.append("defs").append("radialGradient")
                       .attr("id", "ocean_fill")
                       .attr("cx", "75%")
                       .attr("cy", "25%");
-                  ocean_fill.append("stop").attr("offset", "5%").attr("stop-color", "#FCE4EC");
-                  ocean_fill.append("stop").attr("offset", "100%").attr("stop-color", "#9ab");
+                ocean_fill.append("stop").attr("offset", "5%").attr("stop-color", "#880E4F");
+                ocean_fill.append("stop").attr("offset", "100%").attr("stop-color", "#C2185B");
+                //svg线性渐变 - Stop  http://www.w3school.com.cn/svg/svg_grad_linear.asp
 
-              var globe_highlight = svg.append("defs").append("radialGradient")
+                // <defs> 标签是 definitions 的缩写，它允许对诸如滤镜等特殊元素进行定义。
+                var globe_highlight = svg.append("defs").append("radialGradient")
                     .attr("id", "globe_highlight")
                     .attr("cx", "75%")
                     .attr("cy", "25%");
-                  globe_highlight.append("stop")
-                    .attr("offset", "5%").attr("stop-color", "#ffd")
+                globe_highlight.append("stop")
+                    .attr("offset", "5%").attr("stop-color", "#FFF")
                     .attr("stop-opacity","0.6");
-                  globe_highlight.append("stop")
-                    .attr("offset", "100%").attr("stop-color", "#ba9")
+                globe_highlight.append("stop")
+                    .attr("offset", "100%").attr("stop-color", "#880E4F")
                     .attr("stop-opacity","0.2");
 
-              var globe_shading = svg.append("defs").append("radialGradient")
+                var globe_shading = svg.append("defs").append("radialGradient")
                     .attr("id", "globe_shading")
                     .attr("cx", "50%")
                     .attr("cy", "40%");
-                  globe_shading.append("stop")
-                    .attr("offset","50%").attr("stop-color", "#9ab")
+                globe_shading.append("stop")
+                    .attr("offset","50%").attr("stop-color", "#F48FB1")
                     .attr("stop-opacity","0")
-                  globe_shading.append("stop")
-                    .attr("offset","100%").attr("stop-color", "#3e6184")
+                globe_shading.append("stop")
+                    .attr("offset","100%").attr("stop-color", "#E91E63")
                     .attr("stop-opacity","0.3")
 
               var drop_shadow = svg.append("defs").append("radialGradient")
