@@ -12,7 +12,8 @@ function mouseover(data) {
     chart.refreshChart(data);
     var c = getcrumbpath(data);
     i(c);
-    d3.selectAll(".skills-sunburst path")
+    d3
+        .selectAll(".skills-sunburst path")
         .style("opacity", .3), sunburst
         .selectAll("path")
         .filter(function (a) { return c.indexOf(a) >= 0 })
@@ -34,7 +35,8 @@ function getcrumbpath(a) {
     return temp
 }
 function initbreadcrumb() {
-    d3.select("#skills-chart-breadcrumb")
+    d3
+        .select("#skills-chart-breadcrumb")
         .append("svg:svg")
         .attr("width", 500)
         .attr("height", 50)
@@ -95,9 +97,7 @@ function k(a) {
     }
 }
 var l;
-
 var chart = function (d3) {
-    
     function processdata(data) {
         var b = [],
             c = 0;
@@ -108,7 +108,6 @@ var chart = function (d3) {
             }), c++)
         }), b
     }
-    
     function c(b, c) {
         j.domain(d3.extent(b, function (a) { return a.date }));
         k
@@ -138,7 +137,6 @@ var chart = function (d3) {
             .attr("d", n)
             .attr("stroke", function () { return c._color })
     }
-    
     function refreshChart(data) {
         var e = processdata(data),
             f = d3.select("#skills-chart-line");
@@ -149,15 +147,20 @@ var chart = function (d3) {
             .attr("d", n)
             .attr("stroke", function () { return data._color })
     }
-    
     var chart = {},
-        rect = { top: 20,  right: 20, bottom: 30, left: 50},
+        rect = {
+            top: 20,
+            right: 20,
+            bottom: 30,
+            left: 50
+        },
         g = 500 - rect.left - rect.right,
         h = 400 - rect.top - rect.bottom,
         i = [1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013],
         j = d3.scale.linear().range([0, g]),
         k = d3.scale.linear().range([h, 0]),
-        bottomtick = d3.svg
+        bottomtick = d3
+            .svg
             .axis()
             .scale(j)
             .tickValues([1999, 2004, 2009, 2013])
@@ -187,90 +190,92 @@ var chart = function (d3) {
             .attr("transform", "translate(" + rect.left + "," + rect.top + ")");
         chart.refreshChart = refreshChart;
         return chart;
-    }
-
-(d3), width = 580,
+    }(d3),
+    width = 580,
     height = 580,
     rad = Math.min(width, height) / Math.PI - 25,
     q = k,
-    r = {  w: 116, h: 30, s: 3, t: 7 },
-    sunburst = d3.select(".skills-sunburst")
+    r = {
+        w: 116,
+        h: 30,
+        s: 3,
+        t: 7
+    },
+    sunburst = d3
+        .select(".skills-sunburst")
         .append("svg:svg")
         .attr("width", width)
         .attr("height", height)
         .append("svg:g")
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-   
-    sunburst.append("svg:circle").attr("r", rad).style("opacity", 0);
-
-    var t = function (a, b) {
-            var c = [],
-                d = a.length;
-            if (a.length !== b.length) c = a.length > b.length ? a : b;
-            else for (var e = 0; d > e; e++) {
-                var f = Math.max(a[e], b[e]) - Math.abs(a[e] - b[e]) / 8;
-                c.push(f)
-            }
-            return c
-        },
-        u = function (a) {
-            if (a instanceof Array) return a;
-            var b = [];
-            return $.each(a, function (a, c) {
-                b = t(u(c), b)
-            }), b
-        },
-        proficiencydata = d3
-            .layout
-            .partition()
-            .sort(null)
-            .size([2 * Math.PI, rad])
-            .children(function (a) {
-                return a.value instanceof Array 
-                    ? (a._proficiency = a.value, d3.entries([a.value[a.value.length - 1]]))
-                    : (a._proficiency = u(a.value), isNaN(a.value) ? d3.entries(a.value) : null)
-            })
-            .value(function (a) { return a.value }),
-        arc = d3.svg
-            .arc()
-            .startAngle(function (a) { return a.x })
-            .endAngle(function (a) { return a.x + a.dx - .01 / (a.depth + .5) })
-            .innerRadius(function (a) { return rad / Math.PI * a.depth })
-            .outerRadius(function (a) { return rad / Math.PI * (a.depth + 1) - 1 });
-
-    var coloralternative = 0
-    initbreadcrumb();
-    var path = sunburst
-        .data(d3.entries(skillsdata))
-        .selectAll("g")
-        .data(proficiencydata)
-        .enter()
-        .append("svg:g")
-        .attr("display", function (a) { return a.depth ? null : "none" });
-
-    path.append("svg:path")
-        .attr("d", arc)
-        .attr("stroke", "#fff")
-        .attr("fill", function (a) { return a._color = q(a), a._color })
-        .attr("fill-rule", "evenodd").attr("display", function (a) { return a.children ? null : "none" })
-        .on("mouseover", mouseover); 
-
-    path.append("svg:text")
-        .attr("transform", function (a) {
-            var r = 180 * ((a.x + a.dx / 2 - Math.PI / 2) / Math.PI);
-            return "rotate(" + r + ")"
+sunburst.append("svg:circle").attr("r", rad).style("opacity", 0);
+var t = function (a, b) {
+        var c = [],
+            d = a.length;
+        if (a.length !== b.length) c = a.length > b.length ? a : b;
+        else for (var e = 0; d > e; e++) {
+            var f = Math.max(a[e], b[e]) - Math.abs(a[e] - b[e]) / 8;
+            c.push(f)
+        }
+        return c
+    },
+    u = function (a) {
+        if (a instanceof Array) return a;
+        var b = [];
+        return $.each(a, function (a, c) {
+            b = t(u(c), b)
+        }), b
+    },
+    proficiencydata = d3
+        .layout
+        .partition()
+        .sort(null)
+        .size([2 * Math.PI, rad])
+        .children(function (a) {
+            return a.value instanceof Array 
+                ? (a._proficiency = a.value, d3.entries([a.value[a.value.length - 1]]))
+                : (a._proficiency = u(a.value), isNaN(a.value) ? d3.entries(a.value) : null)
         })
-        .attr("x", function (a) { return rad / Math.PI * a.depth})
-        .attr("dx", "6").attr("dy", ".1em").text(function (a) { return a.key })
-        .attr("display", function (a) { return a.children ? null : "none" })
-        .on("mouseover", mouseover); 
+        .value(function (a) { return a.value }),
+    arc = d3.svg
+        .arc()
+        .startAngle(function (a) { return a.x })
+        .endAngle(function (a) { return a.x + a.dx - .01 / (a.depth + .5) })
+        .innerRadius(function (a) { return rad / Math.PI * a.depth })
+        .outerRadius(function (a) { return rad / Math.PI * (a.depth + 1) - 1 });
 
-    d3.select(".skills-sunburst")
-        .on("mouseleave", mouseleave); 
-
-    l = path.node()._data_.value; 
-
-    sunburst.append("circle")
-        .attr("r", rad / Math.PI)
-        .attr("opacity", 0);
-    initchart();
+var coloralternative = 0
+initbreadcrumb();
+var path = sunburst
+    .data(d3.entries(skillsdata))
+    .selectAll("g")
+    .data(proficiencydata)
+    .enter()
+    .append("svg:g")
+    .attr("display", function (a) { return a.depth ? null : "none" });
+path
+    .append("svg:path")
+    .attr("d", arc)
+    .attr("stroke", "#fff")
+    .attr("fill", function (a) { return a._color = q(a), a._color })
+    .attr("fill-rule", "evenodd").attr("display", function (a) { return a.children ? null : "none" })
+    .on("mouseover", mouseover); 
+path.
+    append("svg:text")
+    .attr("transform", function (a) {
+        var r = 180 * ((a.x + a.dx / 2 - Math.PI / 2) / Math.PI);
+        return "rotate(" + r + ")"
+    })
+    .attr("x", function (a) { return rad / Math.PI * a.depth})
+    .attr("dx", "6").attr("dy", ".1em").text(function (a) { return a.key })
+    .attr("display", function (a) { return a.children ? null : "none" })
+    .on("mouseover", mouseover); 
+d3
+    .select(".skills-sunburst")
+    .on("mouseleave", mouseleave); 
+l = path.node().__data__.value; 
+sunburst
+    .append("circle")
+    .attr("r", rad / Math.PI)
+    .attr("opacity", 0);
+initchart();

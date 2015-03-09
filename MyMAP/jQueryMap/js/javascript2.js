@@ -19,15 +19,17 @@ var csv;
 
 d3.json("data/countries.geo.json", function(error, json) {
 
-    d3.csv("data/wod.csv", function(error, _csv) {
+    d3.csv("data/wod_fix.csv", function(error, _csv) {
         csv = _csv;
         var world = json.features;
+       
         // var world = topojson.feature(json, json.objects.countries).features;
         _csv.forEach(function(d, i) {
             world.forEach(function(e, j) {
                 if (d.name === e['properties']['name']) {
-                    e['properties']['desc'] = d.desc;
-                    e['properties']['num'] = d.old_id;
+                    // 将csv当中的数据，根据名字判断，发送到geojson文件的properties当中
+                    e['properties']['desc'] = d.desc; // 读取csv文件中的，desc列
+                    e['properties']['num'] = d.old_id; // id
                 }
             })
         })
