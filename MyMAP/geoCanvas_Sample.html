@@ -8,7 +8,7 @@
         <script src="http://d3js.org/d3.geo.projection.v0.min.js" charset="utf-8"></script>
         <script src="http://d3js.org/topojson.v1.min.js"></script>
         
-        <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
         <!--[if lte IE 8]>
         <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-old-ie-min.css">
@@ -24,7 +24,6 @@
             
             body {
                 font-family: 'PT Sans', serif;
-                font-weight: 400;
             }
             h1{
                 color: white;
@@ -61,6 +60,28 @@
         </div>
         
         <script>
+
+            var width = 960,
+                height = 500;
+
+            var projection = d3.geo.albers()
+                .scale(1000);
+
+            var canvas = d3.select("body").append("canvas")
+                .attr("width", width)
+                .attr("height", height);
+
+            var context = canvas.node().getContext("2d");
+
+            var path = d3.geo.path()
+                .projection(projection)
+                .context(context);
+
+            d3.json("jsons/us.json", function(error, us) {
+              path(topojson.feature(us, us.objects.counties));
+              context.stroke();
+            });
+
         </script>
     </body>
 </html>
