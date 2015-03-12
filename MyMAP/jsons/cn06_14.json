@@ -1,4 +1,4 @@
-{"country":"United States",
+{"country”:”China”,
   "info":[{"year":2006,"rank":0.55,"pop(million)":1315.80,"gdp(billions$)":2224.81,"ppp":7204,"score":0.656,"eco_sc":0.621,"edu_sc":0.957,"hea_sc":0.936,"pol_sc":0.111,"m_age":23},
 {"year":2007,"rank":0.57,"pop(million)":1304.50,"gdp(billions$)":1898.93,"ppp":6012,"score":0.664,"eco_sc":0.648,"edu_sc":0.957,"hea_sc":0.941,"pol_sc":0.111,"m_age":23},
 {"year":2008,"rank":0.44,"pop(million)":1319.98,"gdp(billions$)":2095.95,"ppp":4501,"score":0.688,"eco_sc":0.692,"edu_sc":0.978,"hea_sc":0.941,"pol_sc":0.141,"m_age":23},
