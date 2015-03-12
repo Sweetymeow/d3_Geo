@@ -47,8 +47,8 @@
             </div>
         </div>
         <script>
-            var n = 9, // number of layers
-                m = 13, // number of samples per layer
+            var n = 12, // number of layers
+                m = 9, // number of samples per layer
                 stack = d3.layout.stack().offset("wiggle"),
                 layers0, layers1;
 //            layers0 = stack(d3.range(n).map(function() { return bumpLayer(m); })),
@@ -56,20 +56,23 @@
 //            console.log(bumpLayer(m));
             
             var info0,info1;    
-            d3.json("jsons/us06_14_rowArrays.json", function(error, us){
+            d3.json("jsons/us06_14_rowArraysT.json", function(error, us){
                 info0 = us.info;
                 var a = [], objectA = [], i;
                 n = info0.length;
                 for (i = 0; i < info0.length; ++i) {
                     var year = [];
                     year = info0[i];
-                    a = year.map(function(d, i) { 
-                        return {x: i, y: (d<1)?(d*100):(d>10000?d/100:d)};
+                    console.log(info0[i]);
+                    info0[i] = year.map(function(d, i) { 
+                        return {x: i, y: (d<=1)?(d*100):(d>10000?d/100:d)};
                     });
+                    console.log(info0[i]);
                     m = year.length;
+                    
                 }
                 //objectA = a.map(function(d, i) { return {x: i, y: Math.max(0, d)}; });
-                objectA = d3.range(info0.length).map(function() { return a; });
+                objectA = d3.range(info0.length).map(function(i) { return info0[i]; });
                 layers0 = stack(objectA);
                 console.log(layers0);
             });
@@ -80,7 +83,7 @@
                     var year = [];
                     year = info1[i];
                     b = year.map(function(d, i) { 
-                        return {x: i, y: (d<1)?(d*100):(d>10000?d/100:d)};
+                        return {x: i, y: (d<1)?(d*1000):(d>10000?d/100:d)};
                     });   
                 }
                 //objectA = a.map(function(d, i) { return {x: i, y: Math.max(0, d)}; });
