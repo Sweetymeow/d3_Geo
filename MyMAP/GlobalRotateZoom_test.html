@@ -21,10 +21,11 @@
         <!--<![endif]-->
         <style>
             .l-box{
-                padding: 0.8em;
+                padding:0 0.8em 0 0.8em;
                 text-align: center;
             }
             body {
+                margin-top: 0;
                 font-family: 'JabanaExBold', 'PT Sans', serif;
             }
             @font-face {
@@ -93,8 +94,9 @@
             }
 
             .land {
-              fill: #69D2E7;
-              stroke: none;
+                /*fill: #69D2E7;*/
+                fill: #E91E63;
+                stroke: none;
             }
 
             .mesh {
@@ -104,7 +106,7 @@
             }
 
             .point {
-              fill: #f00;
+              fill: #eee;
             }
             .caption{
                 font-family: 'PT Sans', serif;
@@ -171,15 +173,15 @@
 
             var degrees = 180 / Math.PI,
                 width = 1000,
-                height = 600;
+                height = 700;
 
             var loader = d3.dispatch("world"), id = -1;
 
             d3.selectAll("#map, #eisenlohr")
                 .data([
                   orthographicProjection(width, height)
-                      .scale(245)
-                      .translate([width / 2, height * .56]),
+                      .scale(300)
+                      .translate([width / 2, height * .46]),
                   d3.geo.eisenlohr()
                       .precision(.1)
                       .clipExtent([[-1, -1], [width + 1, height + 1]])
