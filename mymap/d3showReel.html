@@ -86,7 +86,7 @@
               // Nest stock values by symbol. http://bl.ocks.org/phoebebright/raw/3176159/ 
               // 提供多重嵌套的显示结构
               symbols = d3.nest()
-                  .key(function(d) { return d.symbol; })   // symbol is name of first col in stocks.csv
+                  .key(function(d) { return d.qqq; })   // symbol is name of first col in stocks.csv
                   .entries(stocks = data); // 读入数据到全局变量
 
               // Parse解析 dates and numbers. We assume values are sorted by date.

@@ -80,10 +80,10 @@
             .range([90, 20]);
 
         var svg = d3.select("div.map").append("svg")
-            .attr("width", margin.left + margin.right)
-            .attr("height", margin.top + margin.bottom)
-          .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+				.attr("width", margin.left + margin.right)
+				.attr("height", margin.top + margin.bottom)
+				.append("g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         var partition = d3.layout.partition()
             .sort(function(a, b) { return d3.ascending(a.name, b.name); })

@@ -163,8 +163,8 @@
                         .on("mousedown", mousedown);
             var curPlace;
             
-            queue().defer(d3.json, "../mymap/jsons/world-110m.json")
-                .defer(d3.json, "../mymap/jsons/places2.json")
+            queue().defer(d3.json, "jsons/world-110m.json")
+                .defer(d3.json, "jsons/places2.json")
                 .await(ready);
 
             function ready(error, world, places) {
