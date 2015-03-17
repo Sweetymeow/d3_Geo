@@ -1,4 +1,5 @@
 File Name,Date Modified,Date Created,Kind,Size (bytes),Path
+Files.csv,2015-03-17 02:06:00 +0000,2015-03-17 02:05:59 +0000,Comma-Separated Values,701079,/Users/xzw117/Sites/d3_Geo/mymap/Files.csv
 HtmlSample.html,2015-03-11 02:38:11 +0000,2015-03-06 04:47:10 +0000,Html Text,2220,/Users/xzw117/Sites/d3_Geo/mymap/HtmlSample.html
 colorMap,2015-02-25 03:12:52 +0000,2015-02-25 03:12:52 +0000,Folder,0,/Users/xzw117/Sites/d3_Geo/mymap/colorMap
 colorMap_PrjTrans.html,2015-02-25 03:12:52 +0000,2015-02-25 03:12:52 +0000,Html Text,9636,/Users/xzw117/Sites/d3_Geo/mymap/colorMap/colorMap_PrjTrans.html
@@ -52,7 +53,7 @@ Nils Types - Jabana Alt Wide Thin Regular.otf,2015-03-11 06:18:42 +0000,2015-03-
 humans.txt,2015-02-25 03:12:52 +0000,2015-02-25 03:12:52 +0000,Text,237,/Users/xzw117/Sites/d3_Geo/mymap/humans.txt
 img,2015-03-06 20:44:33 +0000,2015-02-25 03:12:52 +0000,Folder,0,/Users/xzw117/Sites/d3_Geo/mymap/img
 ChordDiagram.png,2015-03-06 20:44:05 +0000,2015-03-06 20:44:05 +0000,Portable Network Graphics Image,130759,/Users/xzw117/Sites/d3_Geo/mymap/img/ChordDiagram.png
-index.html,2015-03-17 02:02:26 +0000,2015-03-06 20:39:00 +0000,Html Text,10844,/Users/xzw117/Sites/d3_Geo/mymap/index.html
+index.html,2015-03-17 02:34:27 +0000,2015-03-06 20:39:00 +0000,Html Text,11406,/Users/xzw117/Sites/d3_Geo/mymap/index.html
 interactiveOrthographic.html,2015-03-09 03:48:56 +0000,2015-03-06 20:39:00 +0000,Html Text,1716,/Users/xzw117/Sites/d3_Geo/mymap/interactiveOrthographic.html
 jQueryMap,2015-02-25 04:22:29 +0000,2015-02-25 03:12:52 +0000,Folder,0,/Users/xzw117/Sites/d3_Geo/mymap/jQueryMap
 css,2015-02-25 03:12:52 +0000,2015-02-25 03:12:52 +0000,Folder,0,/Users/xzw117/Sites/d3_Geo/mymap/jQueryMap/css
@@ -166,7 +167,7 @@ jquery.cookie.js,2015-02-25 03:12:52 +0000,2015-02-25 03:12:52 +0000,Javascript,
 jquery.js,2015-02-25 03:12:52 +0000,2015-02-25 03:12:52 +0000,Javascript,84705,/Users/xzw117/Sites/d3_Geo/mymap/js/vendor/jquery.js
 modernizr.js,2015-02-25 03:12:52 +0000,2015-02-25 03:12:52 +0000,Javascript,11262,/Users/xzw117/Sites/d3_Geo/mymap/js/vendor/modernizr.js
 placeholder.js,2015-02-25 03:12:52 +0000,2015-02-25 03:12:52 +0000,Javascript,2489,/Users/xzw117/Sites/d3_Geo/mymap/js/vendor/placeholder.js
-jsons,2015-03-17 00:38:59 +0000,2015-02-25 03:12:52 +0000,Folder,0,/Users/xzw117/Sites/d3_Geo/mymap/jsons
+jsons,2015-03-17 02:55:54 +0000,2015-02-25 03:12:52 +0000,Folder,0,/Users/xzw117/Sites/d3_Geo/mymap/jsons
 13-countries-centroids.json,2015-02-25 04:10:08 +0000,2015-02-25 04:10:04 +0000,Json,3911,/Users/xzw117/Sites/d3_Geo/mymap/jsons/13-countries-centroids.json
 CollForceLayout.json,2015-02-25 03:12:52 +0000,2015-02-25 03:12:52 +0000,Json,11413,/Users/xzw117/Sites/d3_Geo/mymap/jsons/CollForceLayout.json
 GenGapTitle.json,2015-03-15 03:56:11 +0000,2015-03-15 03:56:11 +0000,Json,1777,/Users/xzw117/Sites/d3_Geo/mymap/jsons/GenGapTitle.json
@@ -180,6 +181,7 @@ cn06_14dic.json,2015-03-12 03:09:08 +0000,2015-03-12 02:05:06 +0000,Json,1650,/U
 color-world.json,2015-02-25 03:12:52 +0000,2015-02-25 03:12:52 +0000,Json,600032,/Users/xzw117/Sites/d3_Geo/mymap/jsons/color-world.json
 countries.geo.json,2015-02-25 03:12:52 +0000,2015-02-25 03:12:52 +0000,Json,256944,/Users/xzw117/Sites/d3_Geo/mymap/jsons/countries.geo.json
 country-capitals.csv,2015-03-11 03:13:08 +0000,2015-03-11 03:13:08 +0000,Comma-Separated Values,727,/Users/xzw117/Sites/d3_Geo/mymap/jsons/country-capitals.csv
+dispatchData.csv,2015-03-17 02:55:54 +0000,2015-03-17 02:55:54 +0000,Comma-Separated Values,2803,/Users/xzw117/Sites/d3_Geo/mymap/jsons/dispatchData.csv
 flare.json,2015-02-25 03:12:52 +0000,2015-02-25 03:12:52 +0000,Json,11413,/Users/xzw117/Sites/d3_Geo/mymap/jsons/flare.json
 flights.csv,2015-03-06 05:32:11 +0000,2015-03-06 05:32:11 +0000,Comma-Separated Values,65571,/Users/xzw117/Sites/d3_Geo/mymap/jsons/flights.csv
 geo.json,2015-03-08 18:05:50 +0000,2015-03-08 18:05:50 +0000,Json,19011,/Users/xzw117/Sites/d3_Geo/mymap/jsons/geo.json
@@ -3826,10 +3828,11 @@ world110.json,2015-02-25 03:12:55 +0000,2015-02-25 03:12:55 +0000,Json,95783,/Us
 world110_Simple80.json,2015-03-11 03:04:27 +0000,2015-03-11 03:04:27 +0000,Json,85466,/Users/xzw117/Sites/d3_Geo/mymap/jsons/world110_Simple80.json
 world110m.json,2015-02-25 03:12:55 +0000,2015-02-25 03:12:55 +0000,Json,101567,/Users/xzw117/Sites/d3_Geo/mymap/jsons/world110m.json
 wraptext.tsv,2015-03-15 05:18:28 +0000,2015-03-15 05:18:28 +0000,Tab-Separated Values,219,/Users/xzw117/Sites/d3_Geo/mymap/jsons/wraptext.tsv
-mythesis,2015-03-17 00:39:04 +0000,2015-03-17 00:10:15 +0000,Folder,0,/Users/xzw117/Sites/d3_Geo/mymap/mythesis
-AnimatedWorldZoom_test.html,2015-03-11 02:02:20 +0000,2015-03-11 01:57:14 +0000,Html Text,8175,/Users/xzw117/Sites/d3_Geo/mymap/mythesis/AnimatedWorldZoom_test.html
-BilevelPartition_test.html,2015-03-16 21:39:48 +0000,2015-03-16 00:17:32 +0000,Html Text,8336,/Users/xzw117/Sites/d3_Geo/mymap/mythesis/BilevelPartition_test.html
-Faux3DShadedGlobe_Test.html,2015-03-16 18:44:47 +0000,2015-03-06 22:53:21 +0000,Html Text,13139,/Users/xzw117/Sites/d3_Geo/mymap/mythesis/Faux3DShadedGlobe_Test.html
+mythesis,2015-03-17 03:00:18 +0000,2015-03-17 00:10:15 +0000,Folder,0,/Users/xzw117/Sites/d3_Geo/mymap/mythesis
+AnimatedWorldZoom_test.html,2015-03-17 02:36:44 +0000,2015-03-11 01:57:14 +0000,Html Text,8175,/Users/xzw117/Sites/d3_Geo/mymap/mythesis/AnimatedWorldZoom_test.html
+BilevelPartition_test.html,2015-03-17 02:37:12 +0000,2015-03-16 00:17:32 +0000,Html Text,8339,/Users/xzw117/Sites/d3_Geo/mymap/mythesis/BilevelPartition_test.html
+DispatchingEvents_data.html,2015-03-17 03:00:18 +0000,2015-03-17 03:00:18 +0000,Html Text,8171,/Users/xzw117/Sites/d3_Geo/mymap/mythesis/DispatchingEvents_data.html
+Faux3DShadedGlobe_Test.html,2015-03-17 02:37:25 +0000,2015-03-06 22:53:21 +0000,Html Text,13145,/Users/xzw117/Sites/d3_Geo/mymap/mythesis/Faux3DShadedGlobe_Test.html
 PHONE_ChordDiagram.html,2015-03-09 05:34:32 +0000,2015-03-06 05:40:57 +0000,Html Text,2157,/Users/xzw117/Sites/d3_Geo/mymap/mythesis/PHONE_ChordDiagram.html
 PiePaddingII_test.html,2015-03-16 02:28:39 +0000,2015-03-16 00:23:33 +0000,Html Text,4629,/Users/xzw117/Sites/d3_Geo/mymap/mythesis/PiePaddingII_test.html
 Prim'sAlgorithmV_test.html,2015-03-06 02:02:33 +0000,2015-03-06 02:02:33 +0000,Html Text,4728,/Users/xzw117/Sites/d3_Geo/mymap/mythesis/Prim'sAlgorithmV_test.html
@@ -3840,7 +3843,7 @@ SunburstPartition_test.html,2015-03-16 03:31:14 +0000,2015-03-16 01:53:56 +0000,
 SunburstPartition_test_title.html,2015-03-16 05:16:14 +0000,2015-03-16 03:33:49 +0000,Html Text,9707,/Users/xzw117/Sites/d3_Geo/mymap/mythesis/SunburstPartition_test_title.html
 SunburstPartition_titleButton.html,2015-03-16 22:42:28 +0000,2015-03-16 21:38:06 +0000,Html Text,9765,/Users/xzw117/Sites/d3_Geo/mymap/mythesis/SunburstPartition_titleButton.html
 selectableColorWMap_test.html,2015-03-17 00:34:17 +0000,2015-03-17 00:34:17 +0000,Html Text,8484,/Users/xzw117/Sites/d3_Geo/mymap/mythesis/selectableColorWMap_test.html
-sample,2015-03-17 00:36:04 +0000,2015-03-17 00:33:19 +0000,Folder,0,/Users/xzw117/Sites/d3_Geo/mymap/sample
+sample,2015-03-17 02:50:09 +0000,2015-03-17 00:33:19 +0000,Folder,0,/Users/xzw117/Sites/d3_Geo/mymap/sample
 AnimatedWorldZoom.html,2015-03-11 01:56:37 +0000,2015-03-11 00:26:13 +0000,Html Text,8175,/Users/xzw117/Sites/d3_Geo/mymap/sample/AnimatedWorldZoom.html
 Azimuthal.html,2015-02-25 03:12:52 +0000,2015-02-25 03:12:52 +0000,Html Text,4690,/Users/xzw117/Sites/d3_Geo/mymap/sample/Azimuthal.html
 BilevelPartition.html,2015-03-16 00:20:22 +0000,2015-03-16 00:04:56 +0000,Html Text,8411,/Users/xzw117/Sites/d3_Geo/mymap/sample/BilevelPartition.html
@@ -3850,6 +3853,7 @@ ClusteredForceLayoutII.html,2015-03-08 19:08:10 +0000,2015-03-08 19:04:19 +0000,
 CollapsibleForceLayout.html,2015-03-06 20:39:00 +0000,2015-03-06 20:39:00 +0000,Html Text,5516,/Users/xzw117/Sites/d3_Geo/mymap/sample/CollapsibleForceLayout.html
 CustomCartesianProjection.html,2015-03-08 18:18:14 +0000,2015-03-08 18:03:58 +0000,Html Text,3903,/Users/xzw117/Sites/d3_Geo/mymap/sample/CustomCartesianProjection.html
 D3ShowReel10types.html,2015-02-25 03:12:58 +0000,2015-02-25 03:12:58 +0000,Html Text,16234,/Users/xzw117/Sites/d3_Geo/mymap/sample/D3ShowReel10types.html
+DispatchingEvents.html,2015-03-17 02:59:34 +0000,2015-03-17 02:50:09 +0000,Html Text,8171,/Users/xzw117/Sites/d3_Geo/mymap/sample/DispatchingEvents.html
 DynamicHexbin.html,2015-03-12 18:33:56 +0000,2015-03-12 18:05:44 +0000,Html Text,5074,/Users/xzw117/Sites/d3_Geo/mymap/sample/DynamicHexbin.html
 FactorizationDiagrams.html,2015-03-06 02:36:12 +0000,2015-03-06 02:22:54 +0000,Html Text,4433,/Users/xzw117/Sites/d3_Geo/mymap/sample/FactorizationDiagrams.html
 Faux3dArcs.html,2015-03-06 05:24:26 +0000,2015-03-06 04:48:17 +0000,Html Text,11382,/Users/xzw117/Sites/d3_Geo/mymap/sample/Faux3dArcs.html
