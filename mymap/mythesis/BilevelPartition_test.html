@@ -95,7 +95,7 @@
             .innerRadius(function(d) { return radius / 3 * d.depth; })
             .outerRadius(function(d) { return radius / 3 * (d.depth + 1) - 1; });
 
-        d3.json("jsons/GenGapTitle.json", function(error, root) {
+        d3.json("../jsons/GenGapTitle.json", function(error, root) {
 
           // Compute the initial layout on the entire tree to sum sizes.
           // Also compute the full name and fill color for each node,

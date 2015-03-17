@@ -7,8 +7,8 @@
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
         <script src="http://d3js.org/d3.geo.projection.v0.min.js" charset="utf-8"></script>
-        <script src="js/topojson.min.js"></script>
-        <script src="js/d3.geo.zoom.js"></script>
+        <script src="../js/topojson.min.js"></script>
+        <script src="../js/d3.geo.zoom.js"></script>
     
         <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
@@ -113,7 +113,7 @@
 
             var northUp = d3.select("#north-up").on("change", function() { northUp = this.checked; }).property("checked");
 
-            d3.json("../mymap/jsons/world-110m.json", function(error, world) {
+            d3.json("../jsons/world-110m.json", function(error, world) {
 
               var globe = {type: "Sphere"},
                   graticule = d3.geo.graticule()(),
