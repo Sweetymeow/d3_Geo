@@ -90,16 +90,16 @@
             
         </div>
         <script>
-            chart("jsons/streamgraph_int.csv", "orange");
+            chart("../jsons/streamgraph_int.csv", "orange");
             var colors = ["blue", "pink", "orange"], i=0;
             
             function transcolor(i){
                 //d3.select(svg).clear();
                 if(i<3){
-                    chart("jsons/streamgraph_int.csv", colors[i]);
+                    chart("../jsons/streamgraph_int.csv", colors[i]);
                 }else{
                     i = 0;
-                     chart("jsons/streamgraph_int.csv", colors[i]);
+                     chart("../jsons/streamgraph_int.csv", colors[i]);
                 }
             }
             
