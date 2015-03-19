@@ -64,6 +64,7 @@
             svg{
                 -webkit-margin-before: 2em;
                 border: 1px solid #DEDEDE;
+				pointer-events: none;
             }
             
             body {
@@ -81,6 +82,8 @@
 			
 			text{
 				font-weight: 500;
+				text-anchor: middle;
+				pointer-events: auto; 
 			}
 			button{
 				margin: 0.5em 0 0.5em 0;
@@ -168,7 +171,7 @@
 
 		paths.transition()
 				.duration(2000)
-				.delay( function(d,i){ return i*200;} )
+				.delay( function(d,i){ return i*600;} )
 				.attr("opacity",1)
 				.attrTween("d", arcTweenTest);
 		
@@ -187,24 +190,20 @@
 				.text(function(d) { return d.name; })
 				.call(wrap, 40);
 
-			title.transition().duration(1500).delay(4000)
+			title.transition().duration(1500).delay(function(d,i){ return 8000+i*1000; })
 				.attr("transform",function(d,i){
 						//第一个元素（最中间的），只平移不旋转
-						if( i == 0 )
+						if( i == 0 ){
+							alert(d);
 							return "translate(" + arc.centroid(d) + ")";
-
-						//其他的元素，既平移也旋转
-//						var r = 0;
-//						if( (d.x+d.dx/2)/Math.PI*180 < 180 )  // 0 - 180 度以内的
-//							r = 180 * ((d.x + d.dx / 2 - Math.PI / 2) / Math.PI);
-//						else  // 180 - 360 度以内的
-//							r = 180 * ((d.x + d.dx / 2 + Math.PI / 2) / Math.PI);
-						console.log(-(d.x+d.dx/2));
+						}
 						var r = 0;
 						if( -(d.x+d.dx/2)/Math.PI*180 > -1*180 )  // 0 - 180 度以内的
-							r = 180 * ((d.x + d.dx / 2 - Math.PI / 2) / Math.PI);
-						else  // 180 - 360 度以内的
-							r = 180 * ((d.x + d.dx / 2 + Math.PI / 2) / Math.PI);
+							r = 180 * (-(d.x + d.dx / 2 - Math.PI / 2) / Math.PI);
+						else if(-(d.x+d.dx/2)/Math.PI == - 1/2)
+							r = 0;
+						else  // 180 - 360 度以内的d
+							r = - 180 * ((d.x + d.dx / 2 + Math.PI / 2) / Math.PI);
 						
 						//既平移也旋转
 						//console.log(arc.centroid(d));
@@ -230,14 +229,16 @@
 				.attr("transform",function(d,i){
 						//第一个元素（最中间的），只平移不旋转
 						if( i == 0 )
-							return "translate(" + arc.centroid(d) + ")";
+							return "translate(" + [arc.centroid(d).x+100,arc.centroid(d).y] + ")";
 
 						//其他的元素，既平移也旋转
 						var r = 0;
-						if( (d.x+d.dx/2)/Math.PI*180 < 180)  // 0 - 180 度以内的
-							r = 180 * ((d.x + d.dx / 2 - Math.PI / 2) / Math.PI);
-						else  // 180 - 360 度以内的
-							r = 180 * ((d.x + d.dx / 2 + Math.PI / 2) / Math.PI);
+						if( -(d.x+d.dx/2)/Math.PI*180 > -1*180 )  // 0 - 180 度以内的
+							r = 180 * (-(d.x + d.dx / 2 - Math.PI / 2) / Math.PI);
+						else if(-(d.x+d.dx/2)/Math.PI == - 1/2)
+							r = 0;
+						else  // 180 - 360 度以内的d
+							r = - 180 * ((d.x + d.dx / 2 + Math.PI / 2) / Math.PI);
 						//既平移也旋转
 						//console.log(arc.centroid(d));
 						return  "translate(" + arc.centroid(d) + ")" +
@@ -248,14 +249,14 @@
 	});
 
 	// present the certeroid in each geometry
-	function certerCircle(){
-		_path.append("circle")
-			.attr("transform", function(d){ return "translate(" + arc.centroid(d) + ")"; })
-			.attr("r", 5)
-			.style("fill","red")
-			.style("stroke", "#000")
-			.style("stroke-width", "2px");
-	}
+//	function certerCircle(){
+//		_path.append("circle")
+//			.attr("transform", function(d){ return "translate(" + arc.centroid(d) + ")"; })
+//			.attr("r", 5)
+//			.style("fill","red")
+//			.style("stroke", "#000")
+//			.style("stroke-width", "2px");
+//	}
 
 	// Stash the old values for transition.
 	function stash(d) {
@@ -291,15 +292,18 @@
 		 console.log(text);
 		  text.each(function() {
 			var text = d3.select(this),
-				words = text.text().split(/\s+/).reverse(),
+				words = text.text().split(/\s+\s/).reverse(),
 				word,
 				line = [],
 				lineNumber = 0,
 				lineHeight = 1.1, // ems
 				y = text.attr("y"),
 				dy = parseFloat(text.attr("dy")),
-				tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy","1em");
+				//tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy","1em");
+				tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y)
+						.attr("dy", "1em");
 
+				
 			while (word = words.pop()) {
 
 			  line.push(word);
@@ -309,7 +313,9 @@
 				tspan.text(line.join(" "));
 				line = [word];
 				// tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
-				  tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy","1em").text(word);
+				  tspan = text.append("tspan").attr("x", 0).attr("y", y)
+					  .attr("dy","1em")
+					  .text(word);
 			  }
 			}
 		  });

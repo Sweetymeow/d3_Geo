@@ -6,6 +6,7 @@
         <title> data explaination </title>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://d3js.org/d3.v3.min.js"></script>
+		 <script src="../js/html5-qrcode.js"></script>
 
         <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
@@ -64,6 +65,7 @@
             svg{
                 -webkit-margin-before: 2em;
                 border: 1px solid #DEDEDE;
+				pointer-events: none;
             }
             
             body {
@@ -81,6 +83,8 @@
 			
 			text{
 				font-weight: 500;
+				text-anchor: middle;
+				pointer-events: auto; 
 			}
 			button{
 				margin: 0.5em 0 0.5em 0;
@@ -101,7 +105,7 @@
     <body>
         <div class="pure-g">
             <div class="pure-u-1 l-box">
-				<h2 id="title"> Explaination for each section in each <span id="subtitle"> Data Bucket</span></h2>
+				<h2 id="title"> Explaination for each sectiona in each <span id="subtitle"> Data Bucket</span></h2>
 				<h2 id="subtitle">Height for each bar</h2>
                 <p id="centext"> Female-to-male ratio (0.00 = INEQUALITY 1.00 = EQUALITY)</p>
                 <div class="map">
@@ -110,17 +114,23 @@
 					  <label><input type="radio" name="mode" value="count" checked> Count</label>
 					</form>
 				</div>
-				<div class="control"><button onclick="certerCircle()">next</button></div>
+				<div class="control"><button id="nextbtn">next</button></div>
 				<p><a href="SunburstPartition.html">Go back to basic version</a></p>
             </div>
+			<div id="reader" style="width: 300px; height: 300px;"
         </div>
 <script src="../js/dataplay.js">
-$(function(){
-	$('.control').on('click', function(){
-		console.log("show");
-	});
-
-});
-		</script>
+	$('#nextbtn').on('click', function(){
+		alert("next button");
+	};
+	$('#reader').html5_qrcode(function(data){
+	// do something when code is read
+	},
+	function(error){
+	//show read errors
+	}, function(videoError){
+	//the video stream could be opened
+}
+</script>
     </body>
 </html>

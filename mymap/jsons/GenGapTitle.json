@@ -4,47 +4,47 @@
   "name": "Global Gender Gap",
   "children": [
     {
-      "name": "Economic Participation and Opportunity",
+      "name": "Economic Participation  and Opportunity",
       "children": [
         {
-          "name": "Labour force participation ",
+          "name": "Labour force  participation ",
           "size": 0.84
         },
         {
-          "name": "Wage equality for similar work (survey) ",
+          "name": "Wage equality for  similar work (survey) ",
           "size": 0.63
         },
         {
-          "name": "Estimated earned income (PPP US$) ",
+          "name": "Estimated earned  income (PPP US$) ",
           "size": 0.64
         },
         {
-          "name": "Legislators, senior officials&managers ",
+          "name": "Legislators, senior  officials&managers ",
           "size": 0.2
         },
         {
-          "name": "Professional and technical workers ",
+          "name": "Professional and  technical workers ",
           "size": 1.08
         }
       ]
     },
     {
-      "name": "Educational Attainment",
+      "name": "Educational  Attainment",
       "children": [
         {
           "name": "Literacy rate ",
           "size": 0.95
         },
         {
-          "name": "Enrollment in primary education ",
+          "name": "Enrollment in  primary education ",
           "size": 1
         },
         {
-          "name": "Enrollment in secondary education ",
+          "name": "Enrollment in  secondary education ",
           "size": 0
         },
         {
-          "name": "Enrollment in tertiary education ",
+          "name": "Enrollment in  tertiary education ",
           "size": 1.13
         }
       ]
@@ -53,11 +53,11 @@
       "name": "Health and Survival",
       "children": [
         {
-          "name": "Sex ratio at birth (female/male) ",
+          "name": "Sex ratio at  birth (female/male) ",
           "size": 0.9
         },
         {
-          "name": "Healthy life expectancy ",
+          "name": "Healthy life  expectancy ",
           "size": 1.03
         }
       ]
@@ -70,11 +70,11 @@
           "size": 0.31
         },
         {
-          "name": "Women in ministerial positions ",
+          "name": "Women in  ministerial positions ",
           "size": 0.09
         },
         {
-          "name": "Years with female head of state (last 50) ",
+          "name": "Years with female  head of state(last 50) ",
           "size": 0.08
         }
       ]

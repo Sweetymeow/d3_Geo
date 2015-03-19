@@ -1,4 +1,3 @@
-
 var width = 960,
 	height = 800,
 	radius = Math.min(width, height) / 2,
@@ -21,11 +20,19 @@ var partition = d3.layout.partition()
 	.size([2 * Math.PI, radius * radius])
 	.value(function(d) { return 1; });
 
+//	var arc = d3.svg.arc()
+//		.startAngle(function(d) {  console.log(d.x); return d.x - 0.67; })
+//		.endAngle(function(d) {  return d.x + d.dx - 0.67; })
+//		.innerRadius(function(d) { return Math.sqrt(d.y); })
+//		.outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
+// Start the Angle from the right.
 var arc = d3.svg.arc()
-	.startAngle(function(d) {  return d.x - 0.67; })
-	.endAngle(function(d) {  return d.x + d.dx - 0.67; })
+	.startAngle(function(d) { return -(d.x)+Math.PI/2; })
+	.endAngle(function(d) { return -(d.x + d.dx)+Math.PI/2; })
 	.innerRadius(function(d) { return Math.sqrt(d.y); })
 	.outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
+
+var _path;
 
 d3.json("../jsons/Gengaptitle.json", function(error, root) {
 	var path = svg.datum(root).selectAll("path")
@@ -43,9 +50,11 @@ d3.json("../jsons/Gengaptitle.json", function(error, root) {
 
 	paths.transition()
 			.duration(2000)
-			.delay( function(d,i){ return i*200;} )
+			.delay( function(d,i){ return i*600;} )
 			.attr("opacity",1)
 			.attrTween("d", arcTweenTest);
+
+	_path = paths;
 
 	var title = path.append("text") 
 			.attr("opacity",0)
@@ -60,18 +69,20 @@ d3.json("../jsons/Gengaptitle.json", function(error, root) {
 			.text(function(d) { return d.name; })
 			.call(wrap, 40);
 
-		title.transition().duration(1500).delay(4000)
+		title.transition().duration(1500).delay(function(d,i){ return 10000+i*1000; })
 			.attr("transform",function(d,i){
 					//第一个元素（最中间的），只平移不旋转
-					if( i == 0 )
+					if( i == 0 ){
 						return "translate(" + arc.centroid(d) + ")";
-
-					//其他的元素，既平移也旋转
+					}
 					var r = 0;
-					if( (d.x+d.dx/2)/Math.PI*180 < 180+38.4 )  // 0 - 180 度以内的
-						r = 180 * ((d.x + d.dx / 2 - Math.PI / 2) / Math.PI)-38.4;
-					else  // 180 - 360 度以内的
-						r = 180 * ((d.x + d.dx / 2 + Math.PI / 2) / Math.PI)-38.4;
+					if( -(d.x+d.dx/2)/Math.PI*180 > -1*180 )  // 0 - 180 度以内的
+						r = 180 * (-(d.x + d.dx / 2 - Math.PI / 2) / Math.PI);
+					else if(-(d.x+d.dx/2)/Math.PI == - 1/2)
+						r = 0;
+					else  // 180 - 360 度以内的d
+						r = - 180 * ((d.x + d.dx / 2 + Math.PI / 2) / Math.PI);
+
 					//既平移也旋转
 					//console.log(arc.centroid(d));
 					return  "translate(" + arc.centroid(d) + ")" +
@@ -96,14 +107,16 @@ d3.json("../jsons/Gengaptitle.json", function(error, root) {
 			.attr("transform",function(d,i){
 					//第一个元素（最中间的），只平移不旋转
 					if( i == 0 )
-						return "translate(" + arc.centroid(d) + ")";
+						return "translate(" + [arc.centroid(d).x+100,arc.centroid(d).y] + ")";
 
 					//其他的元素，既平移也旋转
 					var r = 0;
-					if( (d.x+d.dx/2)/Math.PI*180 < 180+38.4 )  // 0 - 180 度以内的
-						r = 180 * ((d.x + d.dx / 2 - Math.PI / 2) / Math.PI)-38.4;
-					else  // 180 - 360 度以内的
-						r = 180 * ((d.x + d.dx / 2 + Math.PI / 2) / Math.PI)-38.4;
+					if( -(d.x+d.dx/2)/Math.PI*180 > -1*180 )  // 0 - 180 度以内的
+						r = 180 * (-(d.x + d.dx / 2 - Math.PI / 2) / Math.PI);
+					else if(-(d.x+d.dx/2)/Math.PI == - 1/2)
+						r = 0;
+					else  // 180 - 360 度以内的d
+						r = - 180 * ((d.x + d.dx / 2 + Math.PI / 2) / Math.PI);
 					//既平移也旋转
 					//console.log(arc.centroid(d));
 					return  "translate(" + arc.centroid(d) + ")" +
@@ -114,14 +127,14 @@ d3.json("../jsons/Gengaptitle.json", function(error, root) {
 });
 
 // present the certeroid in each geometry
-function certerCircle(){
-	path.append("circle")
-		.attr("transform", function(d){ return "translate(" + arc.centroid(d) + ")"; })
-		.attr("r", 5)
-		.style("fill","red")
-		.style("stroke", "#000")
-		.style("stroke-width", "2px");
-}
+//	function certerCircle(){
+//		_path.append("circle")
+//			.attr("transform", function(d){ return "translate(" + arc.centroid(d) + ")"; })
+//			.attr("r", 5)
+//			.style("fill","red")
+//			.style("stroke", "#000")
+//			.style("stroke-width", "2px");
+//	}
 
 // Stash the old values for transition.
 function stash(d) {
@@ -129,6 +142,7 @@ function stash(d) {
   d.dx0 = d.dx;
 }
 
+// NO one call this function !!
 // Interpolate the arcs in data space.
 function arcTween(a) {
   var i = d3.interpolate({x: a.x0, dx: a.dx0}, a);
@@ -136,7 +150,7 @@ function arcTween(a) {
 	var b = i(t);
 	a.x0 = b.x;
 	a.dx0 = b.dx;
-	console.log(arc(b));
+//		console.log(arc(b));
 	return arc(b);
   };
 }
@@ -156,14 +170,17 @@ function wrap(text, width) {
 	 console.log(text);
 	  text.each(function() {
 		var text = d3.select(this),
-			words = text.text().split(/\s+/).reverse(),
+			words = text.text().split(/\s+\s/).reverse(),
 			word,
 			line = [],
 			lineNumber = 0,
 			lineHeight = 1.1, // ems
 			y = text.attr("y"),
 			dy = parseFloat(text.attr("dy")),
-			tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy","1em");
+			//tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy","1em");
+			tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y)
+					.attr("dy", "1em");
+
 
 		while (word = words.pop()) {
 
@@ -174,7 +191,9 @@ function wrap(text, width) {
 			tspan.text(line.join(" "));
 			line = [word];
 			// tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
-			  tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy","1em").text(word);
+			  tspan = text.append("tspan").attr("x", 0).attr("y", y)
+				  .attr("dy","1em")
+				  .text(word);
 		  }
 		}
 	  });
