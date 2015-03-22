@@ -97,8 +97,9 @@
         </div>
         
 <script>
-	var textarray = ["Labour", "Wage", "Estimated","Legislators","Professional", "Literacy", "primary edu"],
+	var textarray = ["Labour", "Wage", "Estimated","Legislators","Professional", "Literacy", "primary edu", ],
 		formatDay = function(d){ return textarray[d] };
+	// ["Labour force participation", "Wage equality for similar work (survey)", "Estimated earned income (PPP US$)", "Legislators senior officials & managers", "Professional and technical workers","Literacy rate","Enrollment in primary education", "Enrollment in secondary education", "Enrollment in tertiary education","Sex ratio at birth (female/male)", "Healthy life expectancy", "Women in parliament", "Women in ministerial positions", "Years with female head of state(last 50) "];
 	
 //	var formatDate = d3.time.format("%a"),
 //		formatDay = function(d, i) { console.log(formatDate(new Date(2007, 0, d))); return formatDate(new Date(2007, 0, d)); };
@@ -111,15 +112,15 @@
 	var margin = {top: 20, right: 20, bottom: 30, left: 50};
 
 	var angle = d3.time.scale()
-		.range([0, 2 * Math.PI]);
+		.range([Math.PI/2, 2 * Math.PI+Math.PI/2]);
 
 	var radius = d3.scale.linear()
 		.range([innerRadius, outerRadius]);
 
-//	var color = d3.scale.ordinal()
-//			.domain([0,2])
-//			.range([ "#F50057", "#FF80AB", "#FF4081"]);
-	var color = d3.scale.category20c();
+	var color = d3.scale.ordinal()
+			.domain([0,2])
+			.range([ "#F50057", "#FF80AB", "#FF4081"]);
+	//var color = d3.scale.category20c();
 
 	var stack = d3.layout.stack()
 		.offset("zero")
@@ -147,7 +148,7 @@
 			.append("g")
 			.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-	d3.csv("../jsons/stackedRadialdata.csv", type, function(error, data) {
+	d3.csv("../jsons/gg_ic.csv", type, function(error, data) {
 		// console.log(data);
 		var layers = stack(nest.entries(data));
 
