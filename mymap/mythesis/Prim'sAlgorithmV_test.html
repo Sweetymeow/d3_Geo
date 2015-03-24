@@ -59,11 +59,13 @@
                       d3.hsl(-100, 0.75, 0.35),
                       d3.hsl(  80, 1.50, 0.80),
                       d3.hsl( 260, 0.75, 0.35)
-                    ]);
+                    ]); // #429C16
+				 // d3.hsl(-100, 0.75, 0.35), d3.hsl(  80, 1.50, 0.80), d3.hsl( 260, 0.75, 0.35)
                   return function(i) {
                     return d3.rgb(color(i));
                   };
                 })());
+			// Constructs a new linear scale with the interpolator d3.interpolateCubehelix, the domain [0, 1] and the range [hsl(300°, 50%, 0%), hsl(-240°, 50%, 100%)]. This is merely a convenience function.
 
             var worker = new Worker("../js/generate-prims.js");
             worker.postMessage({width: width, height: height});
@@ -80,7 +82,7 @@
                   n = width * height,
                   cells = event.data,
                   distance = new Array(n),
-                  frontier = [(height - 1) * width],
+                  frontier = [(height - 1) * width], // Array
                   image = context.createImageData(width, height),
                   imageData = image.data;
 

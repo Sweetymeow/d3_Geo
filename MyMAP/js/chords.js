@@ -35,10 +35,10 @@ var width = 650,
 
 /*Initiate the SVG*/
 var svg = d3.select("#chart").append("svg:svg")
-    .attr("width", width+50)
-    .attr("height", height+20)
-	.append("svg:g")
-    .attr("transform", "translate(" + width / 2 + "," + (height / 2 + hPad) + ")");
+		.attr("width", width+50)
+		.attr("height", height+20)
+		.append("svg:g")
+		.attr("transform", "translate(" + width / 2 + "," + (height / 2 + hPad) + ")");
 
 	
 var chord = d3.layout.chord()

@@ -7,6 +7,10 @@ var width = 960,
     radius = Math.min(width, height) / 2,
     color = d3.scale.category20();
 
+var pathdelay = 600,
+	textdelay = 700,
+	pathdura = 1000;
+
 var explain = [
     [" The labor force participation rate  is the percentage of working-age  persons in an economy who:  Are employed and Are unemployed  but looking for a job.  Typically 'working-age persons' is  defined as people between the ages  of 16-64. "], ["explaination part II. "]
 ];
@@ -84,9 +88,13 @@ function dataTitle(){
                 .attr("d",arc)
                 .each(stash);
 
+		var seci = 0;
         paths.transition()
-                .duration(2000)
-                .delay( function(d,i){ return i*600;} )
+                .duration(pathdura)
+                .delay(function(d,i){ 
+						console.log(d); 
+						if(d.depth == 1)  seci++;
+						return d.depth>1?((i+10+seci*5)* pathdelay): (d.depth+seci)*pathdelay*2;} )
                 .attr("opacity",1)
                 .attrTween("d", arcTweenTest);
 
@@ -104,8 +112,14 @@ function dataTitle(){
                 .attr("text-anchor","middle")
                 .text(function(d) { return d.name; })
                 .call(wrap, 40);
-
-        title.transition().duration(1500).delay(function(d,i){ return 10000+i*1000; })
+		
+		var secj = 0;
+        title.transition().duration(pathdura)
+			.delay(function(d,i){ 
+				if(d.depth == 1)  secj++;
+				return d.depth>1 ? ((i+10+secj*5)* textdelay) : (d.depth+secj)*textdelay*2;})
+			.attr("class", function(d,i){ 
+				return d.depth==0?"maintitle":d.depth==1?"title":"subTitle"+i; })
             .attr("transform",function(d,i){
                 //第一个元素（最中间的），只平移不旋转
                 if( i == 0 ){
@@ -224,7 +238,7 @@ function wrap(text, width) {
             lineHeight = 1.1, // ems
             y = text.attr("y"),
             dy = parseFloat(text.attr("dy")),
-            tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em");
+            tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", "1em");
 
         while (word = words.pop()) {
 
