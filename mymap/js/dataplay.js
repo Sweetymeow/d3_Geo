@@ -11,8 +11,8 @@ var pathdelay = 600,
 	textdelay = 700,
 	pathdura = 1000;
 
-var explain = [
-    [" The labor force participation rate  is the percentage of working-age  persons in an economy who:  Are employed and Are unemployed  but looking for a job.  Typically 'working-age persons' is  defined as people between the ages  of 16-64. "], ["explaination part II. "]
+var explains = [
+    [" The labor force participation rate  is the percentage of working-age persons  in an economy who: Are employed  and Are unemployed but looking for a job.  Typically 'working-age persons'  is defined as people between the ages of 16-64."], ["explaination part II. "]
 ];
 
 //////function for QR //////
@@ -54,7 +54,9 @@ function dataTitle(){
         .attr("transform", "translate(" + width / 2 + "," + height * 0.5 + ")");
    
     //D3: 参考线
-    svg.append("line").attr("x1", -width).attr("y1", 0).attr("x2", width).attr("y2", 0)
+    svg.append("line")
+		.attr("class", "refLine")
+		.attr("x1", -width).attr("y1", 0).attr("x2", width).attr("y2", 0)
         .attr("stroke-width", 2)
         .attr("stroke", "lightgray");
 
@@ -92,7 +94,7 @@ function dataTitle(){
         paths.transition()
                 .duration(pathdura)
                 .delay(function(d,i){ 
-						console.log(d); 
+						//console.log(d); 
 						if(d.depth == 1)  seci++;
 						return d.depth>1?((i+10+seci*5)* pathdelay): (d.depth+seci)*pathdelay*2;} )
                 .attr("opacity",1)
@@ -155,15 +157,16 @@ function dataTitle(){
         title.data(partition.value(value).nodes)
             .transition().duration(1500)
                 .attr("transform",function(d,i){
+				console.log(d);
                 //第一个元素（最中间的），只平移不旋转
                 if( i == 0 )
-                    return "translate(" + [arc.centroid(d).x+100,arc.centroid(d).y] + ")";
+                    return "translate(" + arc.centroid(d) + ")";
 
                 //其他的元素，既平移也旋转
                 var r = 0;
                 if( -(d.x+d.dx/2)/Math.PI*180 > -1*180 )  // 0 - 180 度以内的
                     r = 180 * (-(d.x + d.dx / 2 - Math.PI / 2) / Math.PI);
-                else if(-(d.x+d.dx/2)/Math.PI == - 1/2)
+                else if(-(d.x+d.dx/2) == - 1/2)
                     r = 0;
                 else  // 180 - 360 度以内的d
                     r = - 180 * ((d.x + d.dx / 2 + Math.PI / 2) / Math.PI);
@@ -175,7 +178,9 @@ function dataTitle(){
                 .attr("opacity", 0.9);
       });
     }); // d3.json
-    
+
+	/*///////////////////////// Next Button /////////////////////////////////////*/
+	
     d3.select("#nextbtn").on("click",function(){
         console.log("click next button: " + nextindex + " times");
         /*Create wrapper for center text*/
@@ -187,12 +192,15 @@ function dataTitle(){
             .attr("class", "explanation")
             .attr("text-anchor", "middle")
             .attr("x", 0 + "px")
-            .attr("y", -24*10/2 + "px")
+            .attr("y", -24*14/2 + "px")
             .attr("opacity", 1);
         
+		/*///////////////// Press 3 Times ///////////////// */
         if(nextindex == 2){
-            console.log("add explain[0] to top" + explain[0]);
-            middleTextTop.text(explain[0]).call(wrap, 350);
+			d3.select(".maintitle").remove();
+			d3.select("refLine").remove();
+            console.log("add explains[0] to top" + explains[0]);
+            middleTextTop.text(explains[0]).call(wrap, 350);
         }
         
     });
@@ -234,25 +242,41 @@ function wrap(text, width) {
             words = text.text().split(/\s+\s/).reverse(),
             word,
             line = [],
-            lineNumber = 0,
-            lineHeight = 1.1, // ems
+            lineNumber = -1,
+			midlineNum = 1 ,
+            lineHeight = 1, // ems
             y = text.attr("y"),
             dy = parseFloat(text.attr("dy")),
             tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", "1em");
+		
+		if(width > 100){ // center text
+			while (word = words.pop()) {
+			  line.push(word);
+			  tspan.text(line.join(" "));
+			  if (tspan.node().getComputedTextLength() > width) {
+				line.pop();
+				tspan.text(line.join(" "));
+				line = [word];
+	//            tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy","1em").text(word);
+				tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy",  ++midlineNum * lineHeight + "em").text(word);
+				  console.log("lineNumber: "+ lineNumber);
+				  console.log("lineHeight: "+ lineHeight);
+			  }
+			}
+		}else{
+			while (word = words.pop()) {
+			  line.push(word);
+			  tspan.text(line.join(" "));
+			  if (tspan.node().getComputedTextLength() > width) {
+				line.pop();
+				tspan.text(line.join(" "));
+				line = [word];
+	//            tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy","1em").text(word);
+				tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + "em").text(word);
 
-        while (word = words.pop()) {
-
-          line.push(word);
-          tspan.text(line.join(" "));
-          if (tspan.node().getComputedTextLength() > width) {
-            line.pop();
-            tspan.text(line.join(" "));
-            line = [word];
-            tspan = text.append("tspan").attr("x", 0).attr("y", y)
-                  .attr("dy","1em")
-                  .text(word);
-          }
-        }
+			  }
+			}
+		}
     });
 
 }// 文字换行
