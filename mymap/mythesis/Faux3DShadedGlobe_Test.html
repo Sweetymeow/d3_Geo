@@ -140,7 +140,7 @@
             //  http://bl.ocks.org/3795040
 
             d3.select(window)
-                .on("click", mouseclick)
+                .on("click", mouseup)
                 .on("mousemove", mousemove)
                 .on("mouseup", mouseup);
 
@@ -164,12 +164,12 @@
             var curPlace;
             
             queue().defer(d3.json, "../jsons/world-110m.json")
-                .defer(d3.json, "../jsons/places2.json")
+                .defer(d3.json, "../jsons/places2_sm.json")
                 .await(ready);
 
             function ready(error, world, places) {
                 worldplace = places;
-                console.log(places);
+               // console.log(worldplace);
                 
                 var ocean_fill = svg.append("defs").append("radialGradient")
                       .attr("id", "ocean_fill")
@@ -255,7 +255,7 @@
 
                 svg.append("g").attr("class","points")
                     .selectAll("text").data(places.features)
-                   .enter().append("path")
+                    .enter().append("path")
                     .attr("class", "point")
                     .attr("d", path);
 
@@ -264,21 +264,28 @@
                     .enter().append("text")
                     .attr("class", "label")
                     .text(function(d) { return d.properties.name })
+					.on("click", function(d){
+					 	console.log(d.properties.name);
+                        mouseclick(d.properties.name);
+                    });
 
-                 //uncomment for hover-able country outlines
+                 /*///////// uncomment for hover-able country outlines ///////*/
                  svg.append("g").attr("class","countries")
                     .selectAll("path")
                     .data(topojson.object(world, world.objects.countries).geometries)
                     .enter().append("path")
-                    .attr("d", path);
-                
-                svg.append("g").attr("class","countries")
-                    .selectAll("path")
-                    .data(topojson.object(world, world.objects.countries).properties)
-                    .enter()
-                    .on("click", function(d){ 
+                    .attr("d", path)
+				 	.on("click", function(d){
                         mouseclick(d);
-                    }); 
+                    });
+
+				console.log("world data: ");
+                console.log(world);
+//                svg.append("g").attr("class","countries")
+//                    .selectAll("path")
+//                    .data(topojson.object(world, world.objects.countries).properties)
+//                    .enter()
+                     
 
                 position_labels();
             }
@@ -314,7 +321,7 @@
             var m0, o0;
             
             function mouseclick(place){
-                // console.log(curPlace);
+                console.log(place);
             }
             
             function mousedown() {
