@@ -53,8 +53,8 @@
     <body>
         <div class="pure-g">
             <div class="pure-u-1 l-box">
-                <h1>GDP per capita (current US$)</h1>
-                <p>GDP per capita is product </p>
+                <h1> Simple USA MAP for each town </h1>
+                <p> Simple USA MAP for each town </p>
                 <div class="map"></div>
             </div>
         </div>
@@ -77,7 +77,7 @@
                 .projection(projection)
                 .context(context);
 
-            d3.json("jsons/us.json", function(error, us) {
+            d3.json("../jsons/us.json", function(error, us) {
               path(topojson.feature(us, us.objects.counties));
               context.stroke();
             });

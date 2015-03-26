@@ -112,7 +112,7 @@
 
             }
 
-            d3.json("jsons/world-topo-min.json", function(error, world) {
+            d3.json("../jsons/world-topo-min.json", function(error, world) {
 
               var countries = topojson.feature(world, world.objects.countries).features;
 
@@ -165,7 +165,7 @@
 
 
               //EXAMPLE: adding some capitals from external CSV file
-              d3.csv("jsons/country-capitals.csv", function(err, capitals) {
+              d3.csv("../jsons/country-capitals.csv", function(err, capitals) {
 
                 capitals.forEach(function(i){
                   addpoint(i.CapitalLongitude, i.CapitalLatitude, i.CapitalName );

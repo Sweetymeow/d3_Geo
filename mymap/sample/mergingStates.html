@@ -78,7 +78,7 @@
             .attr("class", "graticule outline")
             .attr("d", path);
 
-        d3.json("color-world.json", function(error, world) {
+        d3.json("../jsons/color-world.json", function(error, world) {
           var countries = topojson.feature(world, world.objects.countries).features,
               neighbors = topojson.neighbors(world.objects.countries.geometries);
 
