@@ -97,9 +97,9 @@
                 .attr("height", height);
 
             queue()
-                .defer(d3.json, "../MyMAP/jsons/us.json")
-                .defer(d3.csv, "../MyMAP/jsons/airports.csv")
-                .defer(d3.csv, "../MyMAP/jsons/flights.csv")
+                .defer(d3.json, "../jsons/us.json")
+                .defer(d3.csv, "../jsons/airports.csv")
+                .defer(d3.csv, "../jsons/flights.csv")
                 .await(ready);
 
             function ready(error, us, airports, flights) {
